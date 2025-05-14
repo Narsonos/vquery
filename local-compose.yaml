@@ -1,0 +1,93 @@
+name: vquery_dev
+
+services:
+  app:
+    build:
+      context: ./services/api
+      dockerfile: Dockerfile
+    restart: always
+    depends_on:
+      - db
+    volumes:
+      - ./services/api/app:/app/app
+    environment:
+      TZ: "Europe/Moscow"
+      MODE: local #${MODE:?Error}
+      GIT_COMMIT: ${GIT_COMMIT}
+    env_file:
+      - .env
+    networks:
+      - vquerynet_dev
+
+  nginx:
+    image: nginx:1.27.0
+    container_name: vquery_dev-nginx
+    restart: always
+    ports:
+      - "127.0.0.1:9092:80"
+    depends_on:
+      - app
+    volumes:
+      - ./services/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./services/nginx/upstream.conf:/etc/nginx/conf.d/upstream.conf:ro
+      - ./services/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    networks:
+      - vquerynet_dev
+
+  #POSTGRES TEMPLATE
+  #db:
+  #  container_name: vquery_dev-db
+  #  image: postgres:16
+  #  restart: unless-stopped
+  #  env_file:
+  #    - .env
+  #  volumes:
+  #    - vquerydb-data:/var/lib/postgresql/data
+  #  networks:
+  #    - vquerynet_dev
+
+  #MYSQL TEMPLATE
+  db:
+    container_name: vquery_dev-db
+    image: mysql:8.0
+    restart: always
+    env_file: 
+      - .env
+    volumes:
+      - vquerydb-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    networks:
+      - vquerynet_dev
+
+  redis:
+    container_name: redis
+    image: redis:latest
+    restart: always
+    entrypoint: ["/bin/bash", "/usr/local/bin/redis-entrypoint.sh"]
+    volumes:
+      - vquery-redis-data:/data
+      - ./services/redis/redis.conf:/usr/local/etc/redis/redis.conf.template:ro      
+      - ./services/redis/redis-entrypoint.sh:/usr/local/bin/redis-entrypoint.sh:ro
+    env_file:
+      - .env
+    healthcheck:
+      test: ["CMD", "redis-cli","-a", "$$REDIS_PASS","ping"]
+      interval: 10s
+      retries: 3
+      timeout: 3s
+    networks:
+      - vquerynet_dev
+
+networks:
+  vquerynet_dev:
+    name: vquerynet_dev
+    driver: bridge
+
+volumes:
+  vquerydb-data:
+  chromadb-data:
+  vquery-redis-data:

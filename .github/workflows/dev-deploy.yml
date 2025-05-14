@@ -1,0 +1,103 @@
+# Controls when the action will run.
+on:
+  workflow_dispatch:
+
+env:
+  COMPOSE_CONF: "./docker-compose.dev.yaml"
+  UPDATE_SCRIPT: "zero-downtime-nginx-scale.py"
+  APP_PORT: "8000"
+  SERVICE_NAME: "app"
+  NGINX_SERVICE_NAME: "nginx"
+
+  MODE: "dev"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Prepare Deployment Files
+        run: |
+          mkdir deploy
+          ls -lia
+          cp ${{ env.COMPOSE_CONF }} deploy/
+          cp ${{ env.UPDATE_SCRIPT }} deploy/
+          cp -r services deploy/
+
+
+      #update_var creates file if not exists so we must be good ig
+      - name: Update .env file with environment variables
+        run: |
+          update_var() {
+            local file=$1 var=$2 value=$3
+            [ -f "$file" ] || touch "$file" 
+            grep -q "^$var=" "$file" && \
+              sed -i "s|^$var=.*|$var=$value|" "$file" || \
+              echo "$var=$value" >> "$file"
+          }
+
+          update_var deploy/.env MODE "'${{ env.MODE }}'"
+          update_var deploy/.env GIT_COMMIT "'$(git rev-parse --short "$GITHUB_SHA")'"
+
+          update_var deploy/.env SECRET "'${{ secrets.SECRET }}'"
+          update_var deploy/.env VK_TOKEN "'${{ secrets.VK_TOKEN }}'"
+          update_var deploy/.env TG_BOT_TOKEN "'${{ secrets.TG_BOT_TOKEN }}'"
+          
+          update_var deploy/.env REDIS_PASS "'${{secrets.REDIS_PASS}}'"
+          update_var deploy/.env POSTGRES_USER "'${{ secrets.POSTGRES_USER }}'"
+          update_var deploy/.env POSTGRES_PASSWORD "'${{ secrets.POSTGRES_PASSWORD }}'"
+          update_var deploy/.env POSTGRES_DB "'${{ secrets.POSTGRES_DB }}'"
+          
+
+      - name: Deploy
+        uses: easingthemes/ssh-deploy@v5.1.0
+        with:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          ARGS: "-rlgoDzvc --delete --inplace"
+          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+          REMOTE_USER: ${{ secrets.REMOTE_USER }}
+          SOURCE: "deploy/"
+          TARGET: "${{ secrets.DEV_REMOTE_TARGET }}"
+          EXCLUDE: "services/api/hfcache/"
+          SCRIPT_AFTER: |
+            sudo chown -R ${{ secrets.REMOTE_USER }}:${{ secrets.REMOTE_USER }} ${{ secrets.DEV_REMOTE_TARGET }}
+
+      - name: Install yq
+        run: |
+          sudo wget https://github.com/mikefarah/yq/releases/download/v4.16.1/yq_linux_amd64 -O /usr/bin/yq
+          sudo chmod +x /usr/bin/yq
+
+      - name: Extract name from docker-compose
+        run: |
+          IMAGE_NAME=$(yq e '.name' ${{ env.COMPOSE_CONF }})
+          LOCAL_NETWORK=$(yq e '.services.${{ env.NGINX_SERVICE_NAME }}.networks[0]' ${{ env.COMPOSE_CONF }})
+          NGINX_CONTAINER_NAME=$(yq e '.services.${{ env.NGINX_SERVICE_NAME }}.container_name' ${{ env.COMPOSE_CONF }})
+          echo "IMAGE_NAME=${IMAGE_NAME}" >> $GITHUB_ENV
+          echo "LOCAL_NETWORK=${LOCAL_NETWORK}" >> $GITHUB_ENV
+          echo "NGINX_CONTAINER_NAME=${NGINX_CONTAINER_NAME}" >> $GITHUB_ENV
+
+      - name: Start zero-downtime-update
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.REMOTE_HOST }}
+          username: ${{ secrets.REMOTE_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          envs: IMAGE_NAME,IMAGE_TAG,NGINX_CONTAINER_NAME,LOCAL_NETWORK
+          script: |
+            set -e
+            cd ${{ secrets.DEV_REMOTE_TARGET }}
+
+            CMD="python3 ${{ env.UPDATE_SCRIPT }} \
+              --config-file ${{ env.COMPOSE_CONF }} \
+              --app-port ${{ env.APP_PORT }} \
+              --service-name ${{ env.SERVICE_NAME }} \
+              --project-name $IMAGE_NAME \
+              --nginx-container-name $NGINX_CONTAINER_NAME \
+              --local-network $LOCAL_NETWORK \
+              --only-restart \
+              --build"
+
+            $CMD
+
+            echo "$CMD" > command.txt

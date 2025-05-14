@@ -1,0 +1,36 @@
+1. Тест BETWEEN и INTERVAL - выбор сотрудников, которые были наняты за 2020 год
+{
+  "select": {
+    "columns": [
+      {
+        "type": "aliased",
+        "alias_id": 22
+      },
+      {
+        "type": "aliased",
+        "alias_id": 23
+      }
+    ],
+    "from_": {
+      "type": "aliased",
+      "alias_id": 12
+    }
+  },
+  "where": {
+    "expression": {
+      "type": "between",
+      "expr": {"type":"aliased", "alias_id":23},
+      "lower": {"type":"literal", "value":"2020-01-01"},
+      "upper": {
+               "type":"op", 
+               "left": {"type":"literal", "value":"2020-01-01"},
+               "operation": "+",
+               "right": {
+                  "type":"interval",
+                  "value": 1,
+                  "unit": "YEAR"
+                  }
+              }
+       }
+   }
+}
