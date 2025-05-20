@@ -1,42 +1,21 @@
-from app.models.common import Alias
-import app.utils.exceptions as exc
+from app.models.common import Alias, Query
+from app.utils import exceptions as exc, context as ctx
 
-from typing import List, Literal, Tuple, Union, Annotated
+from typing import List, Literal, Tuple, Union, Annotated, Optional
 from sqlmodel import SQLModel, Field, select
-from pydantic import field_validator, PrivateAttr
+from pydantic import field_validator, PrivateAttr, model_validator
 from enum import Enum
 from sqlalchemy.ext.asyncio import AsyncSession
-import app.utils.context as ctx
+
 import logging
 logger = logging.getLogger('applogger')
 
 
 
-###############
-# TO DO BOARD #
-###############
-# 1. Add validity checks for str so no arbitrarity of strings is limited
+##############################
+#           ENUMS            #
+##############################
 
-
-
-
-#ALIAS CACHE
-async def get_or_fetch_alias(alias_id: int) -> Alias:
-    user = ctx.current_user.get()
-    dbsession = ctx.current_dbsession.get()
-    redis = ctx.current_redis.get()
-    
-    key = f"alias:{alias_id}"
-    alias_json = await redis.get(key)
-    if alias_json:
-        alias = Alias.model_validate_json(alias_json)
-        logger.info(f'Found alias in cache: {alias}')
-        return alias
-    alias = await Alias.by_id(alias_id=alias_id, owner_id=user.id, dbsession=dbsession)
-    await redis.set(key, alias.model_dump_json(), ex=3600)  
-
-    logger.info(f'Pulled alias from db: {alias}')
-    return alias
 
 class AggregatesEnum(str, Enum):
     AVG = "AVG"
@@ -178,46 +157,54 @@ class LimitClause(SQLModel):
 #       CLIENT SIDE       #
 ###########################
 class Expr(SQLModel):
-    type: str
     _counterpart = PrivateAttr(default_factory= lambda: _Expr)
+    type: str
+    
 
 class BinaryOperation(Expr):
+    _counterpart = PrivateAttr(default_factory= lambda: _BinaryOperation) 
     type: Literal["op"]
     left: "Expression"
     operation: Operators
     right: "Expression"
-    _counterpart = PrivateAttr(default_factory= lambda: _BinaryOperation) 
+    
 
 class FunctionCall(Expr):
+    _counterpart = PrivateAttr(default_factory= lambda: _FunctionCall) 
     type: Literal["func"]
     func: OperandFuncEnum | AggregatesEnum
     args: List["Expression"] | List[AllCols]
-    _counterpart = PrivateAttr(default_factory= lambda: _FunctionCall) 
+    
 
 class IntervalExpr(Expr):
+    _counterpart = PrivateAttr(default_factory= lambda: _IntervalExpr)
     type: Literal["interval"]
     value: int
     unit: DateUnitEnum
-    _counterpart = PrivateAttr(default_factory= lambda: _IntervalExpr)
+    
 
-class CaseItem(Expr):
+class CaseItem(SQLModel):
+    _counterpart = PrivateAttr(default_factory= lambda: _CaseItem)
     case: 'BooleanExpression'
     then: 'Expression'
-    _counterpart = PrivateAttr(default_factory= lambda: _CaseItem)
+    
 
 class CaseExpr(Expr):
+    _counterpart = PrivateAttr(default_factory= lambda: _CaseExpr)
+    type: Literal['case']
     cases: List[CaseItem] = Field(min_length=1)
     default: 'Expression'
-    _counterpart = PrivateAttr(default_factory= lambda: _CaseExpr)
+    
 
 
 #these two represent atomic database objects
 #They do not need counterparts - because they are always stored as parts of an aliases.
 class TableOperand(Expr):
+    _counterpart = PrivateAttr(default_factory= lambda: TableOperand) 
     type: Literal["table"]
     table: str
     is_aggregate: bool = False
-    _counterpart = PrivateAttr(default_factory= lambda: TableOperand) 
+   
 
     @classmethod
     async def from_input(cls, inp: 'TableOperand'):
@@ -227,11 +214,12 @@ class TableOperand(Expr):
         return f'`{self.table}`'
 
 class ColumnOperand(Expr):
+    _counterpart = PrivateAttr(default_factory= lambda: ColumnOperand) 
     type: Literal["col"]
     table: str
     column: str
     is_aggregate: bool = False
-    _counterpart = PrivateAttr(default_factory= lambda: ColumnOperand) 
+    
 
     @classmethod
     async def from_input(cls, inp: 'ColumnOperand'):
@@ -241,8 +229,9 @@ class ColumnOperand(Expr):
         return f'`{self.table}`.`{self.column}`'
 
 class BooleanExpr(SQLModel):
-    type: str
     _counterpart = PrivateAttr(default_factory= lambda: _BooleanExpr)
+    type: str
+    
 
 
 
@@ -250,43 +239,56 @@ class BooleanExpr(SQLModel):
 
 
 class AliasedExpr(Expr, BooleanExpr):
-    type: Literal["aliased"]
-    alias_id: int
     _counterpart = PrivateAttr(default_factory= lambda: _AliasedExpr) 
+    type: Literal["aliased"]
+    alias_id: Optional[int] = None
+    alias_name: Optional[str] = None
+    
 
+    @model_validator(mode='after')
+    def check_exclusive_fields(self) -> 'AliasedExpr':
+        if bool(self.alias_id) == bool(self.alias_name):
+            raise ValueError("Exactly one of 'alias_id' or 'alias_name' must be provided")
+        return self
 
 
 class NotExpr(BooleanExpr):
+    _counterpart = PrivateAttr(default_factory= lambda: _NotExpr)
     type: Literal["not"]
     operand: "BooleanExpression"
-    _counterpart = PrivateAttr(default_factory= lambda: _NotExpr)
+    
 
 
 class BooleanBinaryExpr(BooleanExpr):
+    _counterpart = PrivateAttr(default_factory= lambda: _BooleanBinaryExpr)
     type: Literal["and_or"]
     left: "BooleanExpression"
     bool_op: LogicalEnum  # Только AND / OR
     right: "BooleanExpression"
-    _counterpart = PrivateAttr(default_factory= lambda: _BooleanBinaryExpr)
+    
 
 
 class ComparisonExpr(BooleanExpr):
-    type: Literal["compare"]
     _counterpart = PrivateAttr(default_factory= lambda: _ComparisonExpr)
+    type: Literal["compare"]
     left: "Expression"
     operator: CompOperators  # <, >, =, <=, ...
     right: "Expression"
 
 
 class BetweenExpr(BooleanExpr):
-    type: Literal["between"]
     _counterpart = PrivateAttr(default_factory= lambda: _BetweenExpr)
+    type: Literal["between"]
     expr: "Expression"
     upper: "Expression"
     lower: "Expression"
     negate: bool = Field(default=False)
 
-
+class IsNull(BooleanExpr):
+    _counterpart = PrivateAttr(default_factory= lambda: _IsNull)
+    type: Literal["isnull"]
+    operand: "Expression"
+    
 
 
 
@@ -294,9 +296,15 @@ class BetweenExpr(BooleanExpr):
 
 
 class AliasCreate(SQLModel):
-    alias: str = Field(description="Alias string that can be used to represent a field/table in the onwer's context")
+    alias: str = Field(description="Alias string that can be used to represent a field/table in the onwer's context", )
     target: "Expression" = Field(description="An field/table represented by an alias")
 
+    @field_validator('alias')
+    @classmethod
+    def validate_alias(cls, v):
+        if ':' in v:
+            raise ValueError('Alias name cannot contain colon (:)')
+        return v
 
 
 def extract_cols_from_expression_tree(expr: "Expression") -> List[ColumnOperand]:
@@ -320,50 +328,71 @@ def extract_cols_from_expression_tree(expr: "Expression") -> List[ColumnOperand]
 
 
 class JoinClauseInput(SQLModel):
-    table: AliasedExpr 
+    _counterpart = PrivateAttr(default_factory= lambda: JoinClause) 
+    table: 'AliasedExpr | SelectSubquery'
     on_condition: "BooleanExpression"
     type: JoinEnum = 'INNER'
-    _counterpart = PrivateAttr(default_factory= lambda: JoinClause) 
+    
 
 
 class WhereClauseInput(SQLModel):
-    expression: "BooleanExpression"
     _counterpart = PrivateAttr(default_factory= lambda: WhereClause) 
+    expression: "BooleanExpression"
+    
 
 class HavingClauseInput(SQLModel):
-    expression: "BooleanExpression"
     _counterpart = PrivateAttr(default_factory= lambda: HavingClause) 
+    expression: "BooleanExpression"
+    
 
 
 class OrderByItemInput(SQLModel):
+    _counterpart = PrivateAttr(default_factory= lambda: OrderByItem) 
     operand: "Expression"
     direction: DirectionEnum
-    _counterpart = PrivateAttr(default_factory= lambda: OrderByItem) 
+    
 
 
 class OrderByClauseInput(SQLModel):
-    items: List[OrderByItemInput] = Field(min_items=1)
     _counterpart = PrivateAttr(default_factory= lambda: OrderByClause) 
+    items: List[OrderByItemInput] = Field(min_items=1)
+    
 
 class GroupByClauseInput(SQLModel):
-    items: List["Expression"] = Field(min_items=1)
     _counterpart = PrivateAttr(default_factory= lambda: GroupByClause) 
+    items: List["Expression"] = Field(min_items=1)
+    
+
+
 
 class SelectClauseInput(SQLModel):
-    columns: List[AliasedExpr] | List[AllCols] = Field(default_factory = lambda:AllCols['*'])  
-    from_: AliasedExpr
-    join_clause: JoinClauseInput | None = Field(default=None)
     _counterpart = PrivateAttr(default_factory= lambda: SelectClause) 
+    columns: List['AliasedExpr | SelectSubquery | ColumnOperand'] | List[AllCols] = Field(default_factory = lambda:AllCols['*'])  
+    from_: 'AliasedExpr | SelectSubquery'
+    join_clause: JoinClauseInput | None = Field(default=None)
+    
 
 class SelectQueryInput(SQLModel):
+    _counterpart = PrivateAttr(default_factory= lambda: SelectQuery) 
     select: SelectClauseInput
     where: WhereClauseInput | None = Field(default=None)
     groupby: GroupByClauseInput | None = Field(default=None)
     having: HavingClauseInput | None = Field(default=None)
     orderby: OrderByClauseInput | None = Field(default=None)
     limit: LimitClause | None = Field(default=None)
-    _counterpart = PrivateAttr(default_factory= lambda: SelectQuery) 
+    
+class SelectSubquery(Expr):
+    _counterpart = PrivateAttr(default_factory=lambda: _SelectSubquery)
+    type:Literal["subquery"]
+    query_id: int | None = None
+    query_name: str | None = None
+    
 
+    @model_validator(mode='after')
+    def check_exclusive_fields(self):
+        if bool(self.query_id) == bool(self.query_name):
+            raise ValueError("Exactly one of 'query_id' or 'query_name' must be provided")
+        return self
 
 
 #######################################
@@ -372,7 +401,7 @@ class SelectQueryInput(SQLModel):
 
 
 class _Expr(SQLModel):
-    def sql(self):
+    def sql(self) -> str:
         raise NotImplemented
     
     @property
@@ -386,9 +415,10 @@ class _Expr(SQLModel):
 
 #Works for both external Expr and and internal _Expr
 class LiteralObject(Expr, _Expr):
+    _counterpart = PrivateAttr(default_factory= lambda: LiteralObject) #returns itself just for polymorphiс expressions
     type: Literal["literal"]
     value: str | int | float | bool
-    _counterpart = PrivateAttr(default_factory= lambda: LiteralObject) #returns itself just for polymorphiс expressions
+    
      
     @property
     def is_aggregate(self):
@@ -422,6 +452,13 @@ class _BinaryOperation(_Expr):
     operation: Operators
     right: _Expr
 
+    @model_validator(mode='after')
+    def ensure_subqueries_are_scalar(self):
+        for v in [self.left, self.right]:
+            if isinstance(v, _SelectSubquery):
+                v.scalarize() 
+
+
     def sql(self):
         return  f'({self.left.sql()} {self.operation} {self.right.sql()})'
 
@@ -444,6 +481,12 @@ class _FunctionCall(_Expr):
 
     def sql(self):
         return f"{self.func.value}({','.join([farg.sql() for farg in self.args])})" # => f(z,x,c,...) or f()
+
+    @model_validator(mode='after')
+    def ensure_subqueries_are_scalar(self):
+        for v in self.args:
+            if isinstance(v, _SelectSubquery):
+                v.scalarize() 
 
     @property
     def is_aggregate(self):
@@ -478,6 +521,8 @@ class _IntervalExpr(Expr):
 
 
 
+
+
 class _BooleanExpr(SQLModel):
     def sql(self):
         raise NotImplemented
@@ -509,7 +554,11 @@ class _AliasedExpr(_Expr, _BooleanExpr):
     
     @classmethod
     async def from_input(cls, inp:AliasedExpr):
-        alias = await get_or_fetch_alias(alias_id=inp.alias_id)
+        user = ctx.current_user.get()
+        dbsession = ctx.current_dbsession.get()
+        redis = ctx.current_redis.get()
+
+        alias = await Alias.fetch(alias_id=inp.alias_id, alias_name=inp.alias_name, user=user, dbsession=dbsession, redis=redis)
         
         return _AliasedExpr.model_construct(
             alias=alias
@@ -520,7 +569,7 @@ class _NotExpr(_BooleanExpr):
     operand: _BooleanExpr
 
     def sql(self):
-        return f'NOT {self.operand.sql()}'
+        return f'NOT ({self.operand.sql()})'
 
     @property
     def is_aggregate(self) -> bool:
@@ -561,6 +610,12 @@ class _ComparisonExpr(_BooleanExpr):
     operator: Operators
     right: _Expr
 
+    @model_validator(mode='after')
+    def ensure_subqueries_are_scalar(self):
+        for v in [self.left, self.right]:
+            if isinstance(v, _SelectSubquery):
+                v.scalarize() 
+
     def sql(self):
         return f'({self.left.sql()} {self.operator} {self.right.sql()})'
 
@@ -576,11 +631,21 @@ class _ComparisonExpr(_BooleanExpr):
             right = await inp.right._counterpart.from_input(inp.right)
         )
 
+
+
 class _BetweenExpr(_BooleanExpr):
     expr: _Expr
     upper: _Expr
     lower: _Expr
     negate: bool = Field(default=False)
+
+    @model_validator(mode='after')
+    def ensure_subqueries_are_scalar(self):
+        for v in [self.expr, self.upper, self.lower]:
+            if isinstance(v, _SelectSubquery):
+                v.scalarize() 
+
+
 
     def sql(self):
         return f'{self.expr.sql()} {"NOT" if self.negate else ""} BETWEEN {self.lower.sql()} AND {self.upper.sql()}'
@@ -598,10 +663,38 @@ class _BetweenExpr(_BooleanExpr):
             negate = inp.negate
         )
 
+class _IsNull(_BooleanExpr):
+    operand: _Expr
+
+    @field_validator('operand', mode='after')
+    @classmethod
+    def ensure_subqueries_are_scalar(cls, v):
+        if isinstance(v, _SelectSubquery):
+            v.scalarize() 
+
+    def sql(self):
+        return f'({self.operand.sql()} IS NULL)'
+
+    @property
+    def is_aggregate(self) -> bool:
+        return self.operand.is_aggregate
+    
+    @classmethod
+    async def from_input(cls, inp:IsNull):
+        return _IsNull.model_construct(operand = await inp.operand._counterpart.from_input(inp.operand))
+
+
 
 class _CaseItem(_Expr):
     case: _BooleanExpr
     then: _Expr
+
+
+    @field_validator('then', mode='after')
+    @classmethod
+    def ensure_subqueries_are_scalar(cls, v):
+        if isinstance(v, _SelectSubquery):
+            v.scalarize() 
 
     def sql(self):
         return f"WHEN {self.case.sql()} THEN {self.then.sql()}"
@@ -622,7 +715,8 @@ class _CaseExpr(_Expr):
     default: _Expr
 
     def sql(self):
-        return f"CASE {[case.sql() for case in self.cases]} ELSE {self.default.sql()} END"
+        cases_sql = " ".join(case.sql() for case in self.cases)
+        return f"CASE {cases_sql} ELSE {self.default.sql()} END"
 
     @property
     def is_aggregate(self):
@@ -631,17 +725,9 @@ class _CaseExpr(_Expr):
     @classmethod
     async def from_input(cls, inp: CaseExpr):
         return _CaseExpr.model_construct(
-            cases = inp.value,
-            default = await inp.default._counterpart.from_input(inp.de)
+            cases = [await case._counterpart.from_input(case) for case in inp.cases],
+            default = await inp.default._counterpart.from_input(inp.default)
         )
-
-
-
-
-
-
-
-
 
 
 
@@ -653,24 +739,28 @@ class _CaseExpr(_Expr):
 
 
 class JoinClause(SQLModel):
-    table: _AliasedExpr
+    table: '_AliasedExpr | _SelectSubquery'
     on_condition: _BooleanExpr
     type: JoinEnum = 'INNER'
 
     @field_validator('table')
-    def is_table(cls, v: _AliasedExpr):
-        if not v.alias.is_table:
-            raise ValueError(f'Join Clause got wrong alias object as table. Its sql: {v.sql()}')
+    def is_table(cls, v: '_AliasedExpr | _SelectSubquery'):
+        if isinstance(v, _AliasedExpr):
+            if not v.alias.is_table:
+                raise ValueError(f'Join Clause got wrong alias object as table. Its sql: {v.sql()}')
 
     def sql(self):
-        return f"{self.type.value} JOIN {self.table.sql()} ON {self.on_condition.sql()}"
+        return f"{self.type.value} JOIN {self.table.sql_as() if isinstance(self.table, _SelectSubquery) else self.table.sql()} ON {self.on_condition.sql()}"
 
     @classmethod
     async def from_input(cls, inp: JoinClauseInput):
+        on_condition = await inp.on_condition._counterpart.from_input(inp=inp.on_condition)
+        if on_condition.is_aggregate:
+            raise exc._ImproperAggregateUse('JOIN clause does not allow aggregate usage! "on-condition" part seems to be aggregate.')
 
         return JoinClause.model_construct(
             table = await inp.table._counterpart.from_input(inp.table),
-            on_condition = await inp.on_condition._counterpart.from_input(inp=inp.on_condition),
+            on_condition = on_condition,
             type = inp.type
         )
 
@@ -682,8 +772,11 @@ class WhereClause(SQLModel):
 
     @classmethod
     async def from_input(cls, inp: WhereClauseInput):
+        expression = await inp.expression._counterpart.from_input(inp=inp.expression)
+        if expression.is_aggregate:
+            raise exc._ImproperAggregateUse('WHERE clause does not allow aggregate usage! Passed expression seems to be aggregate.')
         return WhereClause.model_construct(
-            expression = await inp.expression._counterpart.from_input(inp=inp.expression)
+            expression = expression
         )
 
 
@@ -710,7 +803,14 @@ class OrderByItem(SQLModel):
 
     def sql(self):
         return f'{self.operand.sql()} {self.direction.upper()}'
-    
+
+    @field_validator('operand', mode='after')
+    @classmethod
+    def ensure_subqueries_are_scalar(cls, v):
+        if isinstance(v, _SelectSubquery):
+            v.scalarize() 
+
+
     @classmethod
     async def from_input(cls, inp: OrderByItemInput):
         return OrderByItem.model_construct(
@@ -738,33 +838,57 @@ class GroupByClause(SQLModel):
     def sql(self):
         return f"GROUP BY {','.join([item.sql() for item in self.items])}"
 
+    @field_validator('items', mode='after')
+    @classmethod
+    def ensure_subqueries_are_scalar(cls, items):
+        for item in items:
+            if isinstance(items, _SelectSubquery):
+                items.scalarize() #makes col._sql scalar or throws exception
+
     @classmethod
     async def from_input(cls, inp: GroupByClauseInput):
+        items = [await x._counterpart.from_input(inp=x) for x in inp.items]
+
+        if any(item.is_aggregate for item in items):
+            raise exc._ImproperAggregateUse('GROUP BY clause does not allow aggregate usage! One of passed items seems to be aggregate.')
+
         return GroupByClause.model_construct(
-            items = [await x._counterpart.from_input(inp=x) for x in inp.items]
+            items = items
         )
 
 
 
 
 class SelectClause(SQLModel):
-    columns: List[_AliasedExpr] | List[AllCols] = Field(default_factory = lambda:AllCols['*']) 
-    from_: _AliasedExpr
+    columns: List['_AliasedExpr | _SelectSubquery | ColumnOperand'] | List[AllCols] = Field(default_factory = lambda:AllCols['*']) 
+    from_: '_AliasedExpr |_SelectSubquery'
     join_clause: JoinClause | EmptyClause = Field(default_factory = lambda:EmptyClause())
 
     @field_validator('from_')
+    @classmethod
     def is_table(cls, v: _AliasedExpr):
         if not v.alias.is_table:
             raise ValueError(f'Alias {v.alias} for target {v.sql()} is not a valid table name.')
 
+    @field_validator('columns', mode='after')
+    @classmethod
+    def ensure_subqueries_are_scalar(cls, cols: List['_AliasedExpr | _SelectSubquery | ColumnOperand'] | List[AllCols]):
+        for col in cols:
+            if isinstance(col, _SelectSubquery):
+                col.scalarize() #makes col._sql scalar or throws exception
+
+
     def sql(self):
-        return f"SELECT {', '.join([x.sql_as() if isinstance(x,_AliasedExpr) else x.sql() for x in self.columns])} FROM {self.from_.sql()} {self.join_clause.sql()}"
+        cols_sql = ', '.join([x.sql_as() if isinstance(x,(_AliasedExpr,_SelectSubquery)) else x.sql() for x in self.columns])
+        from_sql = self.from_.sql_as() if isinstance(self.from_,_SelectSubquery) else self.from_.sql()
+        join_sql = self.join_clause.sql()
+        return f"SELECT {cols_sql} FROM {from_sql} {join_sql}"
     
 
     @classmethod
     async def from_input(cls, inp: SelectClauseInput):
         from_ =  await inp.from_._counterpart.from_input(inp=inp.from_)
-        columns = [(await x._counterpart.from_input(inp=x)) if isinstance(x, AliasedExpr) else AllCols('*') for x in inp.columns]
+        columns = [(await x._counterpart.from_input(inp=x)) if isinstance(x, (AliasedExpr, ColumnOperand, SelectSubquery)) else AllCols('*') for x in inp.columns]
         join = (await inp.join_clause._counterpart.from_input(inp=inp.join_clause)) if inp.join_clause is not None else EmptyClause()
 
         obj = SelectClause.model_construct(
@@ -789,7 +913,6 @@ class SelectQuery(SQLModel):
 
     @classmethod 
     async def from_input(cls, inp: SelectQueryInput) -> "SelectQuery":
-
         select = await inp.select._counterpart.from_input(inp=inp.select)
         where = await inp.where._counterpart.from_input(inp=inp.where) if inp.where is not None else EmptyClause()
         groupby = await inp.groupby._counterpart.from_input(inp=inp.groupby) if inp.groupby is not None else EmptyClause()
@@ -807,6 +930,41 @@ class SelectQuery(SQLModel):
             limit = limit,
         )
 
+    @property
+    def get_col_count(self):
+        return -1 if self.select.columns == ['*'] else len(self.select.columns)
+
+
+
+class _SelectSubquery(_Expr):
+    query: Query
+    _sql: str
+
+    def sql(self):
+        return f'({self._sql})'  #removes ";" from the end of subquery  
+
+    def sql_as(self):
+        return f'({self._sql}) AS `{self.query.name}`'
+    
+    def scalarize(self):
+        self._sql = self.query.scalarize()
+
+    @property
+    def is_aggregate(self): #We consider subquery WITHIN expressions as a SCALAR value, thus it's not aggregate. Behaves as such
+        return False
+
+    @classmethod 
+    async def from_input(cls, inp: SelectSubquery) -> "_SelectSubquery":
+        user = ctx.current_user.get()
+        dbsession = ctx.current_dbsession.get()
+        redis = ctx.current_redis.get()
+
+        query: Query = await Query.fetch(query_id=inp.query_id, query_name=inp.query_name, user=user, dbsession=dbsession, redis=redis)
+
+        return _SelectSubquery.model_construct(
+            query = query,
+            _sql = query.query_sql.rstrip(";")
+        )
 
 
 Expression = Annotated[Union[
@@ -817,7 +975,8 @@ Expression = Annotated[Union[
     ColumnOperand,
     TableOperand,
     IntervalExpr,
-    CaseExpr
+    CaseExpr,
+    SelectSubquery
     ], Field(discriminator='type')]
 
 BooleanExpression = Annotated[Union[
@@ -825,7 +984,8 @@ BooleanExpression = Annotated[Union[
     BooleanBinaryExpr,
     ComparisonExpr,
     AliasedExpr,
-    BetweenExpr
+    BetweenExpr,
+    IsNull
     ], Field(discriminator='type')]
 
 

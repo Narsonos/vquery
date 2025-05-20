@@ -21,7 +21,7 @@ class Config():
     JWT_SECRET = os.getenv("JWT_SECRET")
     REFRESH_SECRET = os.getenv("REFRESH_SECRET")
     ALGORITHM = "HS256"
-    ACCESS_TOKEN_EXPIRE_MINUTES = 30
+    ACCESS_TOKEN_EXPIRE_MINUTES = 240
     REFRESH_TOKEN_EXPIRE_DAYS = 7
     LOCK_TIME = 60 #TTL for locks. I.e. in 60s the lock is considered as deadlock => gets auto-unlocked.
 

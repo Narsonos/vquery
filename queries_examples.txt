@@ -34,3 +34,189 @@
        }
    }
 }
+
+
+
+2. Query и Alias с использованием CASE - трансформирует зп из числа в 3 категории - высокая, средняя, низкая
+p.s. alias_id:13 => employees.salary
+Запрос
+{
+  "select": {
+    "columns": [
+      {"type": "aliased", "alias_id": 13},
+      {"type": "aliased", "alias_id": 22},
+      {"type": "aliased", "alias_id": 26}
+    ],
+    "from_": {
+      "type": "aliased",
+      "alias_id": 12
+    }
+  }
+
+}
+
+Алиас
+{
+  "alias": "salary_level",
+  "target": {
+    "type": "case",
+    "cases": [
+      {
+        "case": {
+          "type": "compare",
+          "left": {"type":"aliased", "alias_id":"13"},
+          "operator": ">=",
+          "right": {
+            "type": "literal",
+            "value": 100000
+          }
+        },
+        "then": {
+          "type": "literal",
+          "value": "High"
+        }
+      },
+      {
+        "case": {
+          "type": "compare",
+          "left": {"type":"aliased", "alias_id":"13"},
+          "operator": ">=",
+          "right": {
+            "type": "literal",
+            "value": 50000
+          }
+        },
+        "then": {
+          "type": "literal",
+          "value": "Medium"
+        }
+      }
+    ],
+    "default": {
+      "type": "literal",
+      "value": "Low"
+    }
+  }
+}
+
+
+
+3. Пример использования алиасов по имени
+{
+  "select": {
+    "columns": [
+      {"type": "aliased", "alias_name":"zp"}
+    ],
+    "from_": {
+      "type": "aliased",
+      "alias_name": "rabotniki"
+    }
+  }
+}
+
+
+
+4. Пример использования неправильной агрегации
+Здесь avg_sal - алиас на AVG(employees.salary)
+{
+  "select": {
+    "columns": [
+      "*"
+    ],
+    "from_": {"type": "aliased", "alias_name": "rabotniki"}
+  },
+  "where": {
+    "expression": {"type":"aliased", "alias_name":"avg_sal"}    
+  }
+}
+
+
+5. Тест NOT IS NULL
+
+{
+  "select": {
+    "columns": [
+      {"type": "aliased", "alias_name":"zp"}
+    ],
+    "from_": {
+      "type": "aliased",
+      "alias_name": "rabotniki"
+    }
+  },
+  "where": {
+    "expression": {
+      "type": "not",
+      "operand": {
+        "type":"isnull",
+        "operand": {"type": "aliased", "alias_name": "zp"}
+      } 
+    }
+  }
+}
+
+
+6. Поддержка под-запросов
+6.1. Scalar subquery in select clause
+
+{
+  "select": {
+    "columns": [
+      {"type": "aliased","alias_name": "имя работника"},
+      {"type": "aliased","alias_name": "zp"},
+      {"query_name":"average_salary_subquery"}
+    ],
+    "from_": {
+      "type": "aliased",
+      "alias_name": "rabotniki"
+    }
+  }
+}
+
+6.2. Subquery in aliased expression
+Alias
+{
+  "alias": "отличие зп от средней",
+  "target": { 
+      "type":"op",
+      "left": {"type":"aliased","alias_name":"zp"},
+      "right": {"type":"subquery", "query_name": "average_salary_subquery"},
+      "operation":"-"
+   }
+}
+
+Запрос
+{
+  "select": {
+    "columns": [
+      {"type": "aliased","alias_name": "имя работника"},
+      {"type": "aliased","alias_name": "zp"},
+      {"type": "aliased","alias_name": "отличие зп от средней"}
+    ],
+    "from_": {
+      "type": "aliased",
+      "alias_name": "rabotniki"
+    }
+  }
+}
+
+6.3. Subquery as table
+{
+  "select": {
+    "columns": [
+      {
+        "type": "column",
+        "table": "subquery_as_expression",
+        "column": "имя работника"
+      },
+      {
+        "type": "column",
+        "table": "subquery_as_expression",
+        "column": "zp"
+      }
+    ],
+    "from_": {
+      "type": "subquery",
+      "query_name": "subquery_as_expression",
+    }
+  }
+}

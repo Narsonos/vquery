@@ -2664,3 +2664,953 @@ Traceback:  File "/app/app/routers/actions.py", line 81, in new_query
 2025-04-22 12:23:07,402 - applogger - Found alias in cache: alias_id=23 owner_id=5 alias='дата найма' target='`employees`.`hire_date`' is_table=False is_aggregate=False
 2025-04-22 12:23:07,403 - applogger - Found alias in cache: alias_id=23 owner_id=5 alias='дата найма' target='`employees`.`hire_date`' is_table=False is_aggregate=False
 2025-04-22 12:23:07,403 - applogger - alias=Alias(alias_id=12, owner_id=5, alias='rabotniki', target='employees', is_table=True, is_aggregate=False)
+2025-05-14 10:56:11,202 - applogger - [APP: Startup] Startup began...
+2025-05-14 10:56:11,209 - applogger - [WAIT FOR DB] SELECT 1 Executed -> Database is up and running!
+2025-05-14 10:56:11,210 - applogger - [INIT DB] Creating database tables...(if needed)
+2025-05-14 10:56:11,518 - applogger - [APP: Startup] Startup finished!
+2025-05-14 11:09:59,797 - applogger - [APP: Startup] Startup began...
+2025-05-14 11:09:59,808 - applogger - [WAIT FOR DB] SELECT 1 Executed -> Database is up and running!
+2025-05-14 11:09:59,809 - applogger - [INIT DB] Creating database tables...(if needed)
+2025-05-14 11:09:59,837 - applogger - [APP: Startup] Startup finished!
+2025-05-14 11:16:51,182 - applogger - [APP: Startup] Startup began...
+2025-05-14 11:16:51,240 - applogger - (pymysql.err.OperationalError) (2003, "Can't connect to MySQL server on 'db'")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-05-14 11:16:51,240 - applogger - [WAIT FOR DB] Database is not ready yet, retrying (0/5)...
+2025-05-14 11:16:54,245 - applogger - (pymysql.err.OperationalError) (2003, "Can't connect to MySQL server on 'db'")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-05-14 11:16:54,246 - applogger - [WAIT FOR DB] Database is not ready yet, retrying (1/5)...
+2025-05-14 11:16:57,250 - applogger - (pymysql.err.OperationalError) (2003, "Can't connect to MySQL server on 'db'")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-05-14 11:16:57,251 - applogger - [WAIT FOR DB] Database is not ready yet, retrying (2/5)...
+2025-05-14 11:17:00,255 - applogger - (pymysql.err.OperationalError) (2003, "Can't connect to MySQL server on 'db'")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-05-14 11:17:00,256 - applogger - [WAIT FOR DB] Database is not ready yet, retrying (3/5)...
+2025-05-14 11:17:03,459 - applogger - [WAIT FOR DB] SELECT 1 Executed -> Database is up and running!
+2025-05-14 11:17:03,460 - applogger - [INIT DB] Creating database tables...(if needed)
+2025-05-14 11:17:03,536 - applogger - [APP: Startup] Startup finished!
+2025-05-14 11:21:12,479 - applogger - [APP: Startup] Startup began...
+2025-05-14 11:21:12,486 - applogger - [WAIT FOR DB] SELECT 1 Executed -> Database is up and running!
+2025-05-14 11:21:12,487 - applogger - [INIT DB] Creating database tables...(if needed)
+2025-05-14 11:21:12,504 - applogger - [APP: Startup] Startup finished!
+2025-05-14 11:43:13,675 - applogger - [APP: Startup] Startup began...
+2025-05-14 11:43:13,681 - applogger - [WAIT FOR DB] SELECT 1 Executed -> Database is up and running!
+2025-05-14 11:43:13,682 - applogger - [INIT DB] Creating database tables...(if needed)
+2025-05-14 11:43:13,695 - applogger - [APP: Startup] Startup finished!
+2025-05-14 11:45:17,419 - applogger - [APP: Startup] Startup began...
+2025-05-14 11:45:17,426 - applogger - [WAIT FOR DB] SELECT 1 Executed -> Database is up and running!
+2025-05-14 11:45:17,427 - applogger - [INIT DB] Creating database tables...(if needed)
+2025-05-14 11:45:17,441 - applogger - [APP: Startup] Startup finished!
+2025-05-14 11:47:38,177 - applogger - [APP: Startup] Startup began...
+2025-05-14 11:47:38,183 - applogger - [WAIT FOR DB] SELECT 1 Executed -> Database is up and running!
+2025-05-14 11:47:38,184 - applogger - [INIT DB] Creating database tables...(if needed)
+2025-05-14 11:47:38,196 - applogger - [APP: Startup] Startup finished!
+2025-05-14 11:51:42,612 - applogger - [APP: Startup] Startup began...
+2025-05-14 11:51:42,619 - applogger - [WAIT FOR DB] SELECT 1 Executed -> Database is up and running!
+2025-05-14 11:51:42,620 - applogger - [INIT DB] Creating database tables...(if needed)
+2025-05-14 11:51:42,633 - applogger - [APP: Startup] Startup finished!
+2025-05-14 12:10:06,500 - applogger - [APP: Startup] Startup began...
+2025-05-14 12:10:06,505 - applogger - [WAIT FOR DB] SELECT 1 Executed -> Database is up and running!
+2025-05-14 12:10:06,506 - applogger - [INIT DB] Creating database tables...(if needed)
+2025-05-14 12:10:06,519 - applogger - [APP: Startup] Startup finished!
+2025-05-14 12:12:52,211 - applogger - [APP: Startup] Startup began...
+2025-05-14 12:12:52,217 - applogger - [WAIT FOR DB] SELECT 1 Executed -> Database is up and running!
+2025-05-14 12:12:52,218 - applogger - [INIT DB] Creating database tables...(if needed)
+2025-05-14 12:12:52,233 - applogger - [APP: Startup] Startup finished!
+2025-05-14 12:21:59,556 - applogger - [APP: Startup] Startup began...
+2025-05-14 12:21:59,563 - applogger - [WAIT FOR DB] SELECT 1 Executed -> Database is up and running!
+2025-05-14 12:21:59,564 - applogger - [INIT DB] Creating database tables...(if needed)
+2025-05-14 12:21:59,579 - applogger - [APP: Startup] Startup finished!
+2025-05-14 12:22:28,203 - applogger - Context set!
+2025-05-14 12:22:28,207 - applogger - database returned that owner_id=5 alias='zp' is_table=False target='employees.salary' alias_id=13 is_aggregate=False as an alias for id=13 ownerid=5
+2025-05-14 12:22:28,213 - applogger - Pulled alias from db: owner_id=5 alias='zp' is_table=False target='employees.salary' alias_id=13 is_aggregate=False
+2025-05-14 12:22:28,214 - applogger - Found alias in cache: alias_id=13 owner_id=5 alias='zp' target='employees.salary' is_table=False is_aggregate=False
+2025-05-14 12:22:28,215 - applogger - Found alias in cache: alias_id=13 owner_id=5 alias='zp' target='employees.salary' is_table=False is_aggregate=False
+2025-05-14 12:22:28,216 - applogger - Found alias in cache: alias_id=13 owner_id=5 alias='zp' target='employees.salary' is_table=False is_aggregate=False
+2025-05-14 12:27:10,262 - applogger - [APP: Startup] Startup began...
+2025-05-14 12:27:10,268 - applogger - [WAIT FOR DB] SELECT 1 Executed -> Database is up and running!
+2025-05-14 12:27:10,269 - applogger - [INIT DB] Creating database tables...(if needed)
+2025-05-14 12:27:10,282 - applogger - [APP: Startup] Startup finished!
+2025-05-14 12:27:12,327 - applogger - Context set!
+2025-05-14 12:27:12,328 - applogger - Found alias in cache: alias_id=13 owner_id=5 alias='zp' target='employees.salary' is_table=False is_aggregate=False
+2025-05-14 12:27:12,329 - applogger - Found alias in cache: alias_id=13 owner_id=5 alias='zp' target='employees.salary' is_table=False is_aggregate=False
+2025-05-14 12:27:12,331 - applogger - Found alias in cache: alias_id=13 owner_id=5 alias='zp' target='employees.salary' is_table=False is_aggregate=False
+2025-05-14 12:27:12,332 - applogger - Found alias in cache: alias_id=13 owner_id=5 alias='zp' target='employees.salary' is_table=False is_aggregate=False
+2025-05-14 13:05:11,446 - applogger - Context set!
+2025-05-14 13:05:11,450 - applogger - database returned that alias='rabotniki' owner_id=5 is_table=True alias_id=12 target='employees' is_aggregate=False as an alias for id=12 ownerid=5
+2025-05-14 13:05:11,481 - applogger - Pulled alias from db: alias='rabotniki' owner_id=5 is_table=True alias_id=12 target='employees' is_aggregate=False
+2025-05-14 13:05:11,482 - applogger - Found alias in cache: alias_id=13 owner_id=5 alias='zp' target='employees.salary' is_table=False is_aggregate=False
+2025-05-14 13:05:11,483 - applogger - Found alias in cache: alias_id=13 owner_id=5 alias='zp' target='employees.salary' is_table=False is_aggregate=False
+2025-05-14 13:05:11,485 - applogger - database returned that alias='salary_level' owner_id=5 is_table=False alias_id=26 target="CASE WHEN (employees.salary >= 100000) THEN 'High' WHEN (employees.salary >= 50000) THEN 'Medium' ELSE 'Low' END" is_aggregate=False as an alias for id=26 ownerid=5
+2025-05-14 13:05:11,486 - applogger - Pulled alias from db: alias='salary_level' owner_id=5 is_table=False alias_id=26 target="CASE WHEN (employees.salary >= 100000) THEN 'High' WHEN (employees.salary >= 50000) THEN 'Medium' ELSE 'Low' END" is_aggregate=False
+2025-05-14 13:05:11,486 - applogger - alias=Alias(alias='rabotniki', owner_id=5, is_table=True, alias_id=12, target='employees', is_aggregate=False)
+2025-05-14 13:06:10,929 - applogger - Context set!
+2025-05-14 13:06:10,930 - applogger - Found alias in cache: alias_id=12 owner_id=5 alias='rabotniki' target='employees' is_table=True is_aggregate=False
+2025-05-14 13:06:10,931 - applogger - Found alias in cache: alias_id=13 owner_id=5 alias='zp' target='employees.salary' is_table=False is_aggregate=False
+2025-05-14 13:06:10,934 - applogger - database returned that alias='имя работника' owner_id=5 is_table=False alias_id=22 target='`employees`.`name`' is_aggregate=False as an alias for id=22 ownerid=5
+2025-05-14 13:06:10,954 - applogger - Pulled alias from db: alias='имя работника' owner_id=5 is_table=False alias_id=22 target='`employees`.`name`' is_aggregate=False
+2025-05-14 13:06:10,955 - applogger - Found alias in cache: alias_id=26 owner_id=5 alias='salary_level' target="CASE WHEN (employees.salary >= 100000) THEN 'High' WHEN (employees.salary >= 50000) THEN 'Medium' ELSE 'Low' END" is_table=False is_aggregate=False
+2025-05-14 13:06:10,956 - applogger - alias=Alias(alias_id=12, owner_id=5, alias='rabotniki', target='employees', is_table=True, is_aggregate=False)
+2025-05-14 13:06:19,534 - applogger - Context set!
+2025-05-14 13:06:19,535 - applogger - Found alias in cache: alias_id=12 owner_id=5 alias='rabotniki' target='employees' is_table=True is_aggregate=False
+2025-05-14 13:06:19,536 - applogger - Found alias in cache: alias_id=13 owner_id=5 alias='zp' target='employees.salary' is_table=False is_aggregate=False
+2025-05-14 13:06:19,537 - applogger - Found alias in cache: alias_id=22 owner_id=5 alias='имя работника' target='`employees`.`name`' is_table=False is_aggregate=False
+2025-05-14 13:06:19,537 - applogger - Found alias in cache: alias_id=26 owner_id=5 alias='salary_level' target="CASE WHEN (employees.salary >= 100000) THEN 'High' WHEN (employees.salary >= 50000) THEN 'Medium' ELSE 'Low' END" is_table=False is_aggregate=False
+2025-05-14 13:06:19,538 - applogger - alias=Alias(alias_id=12, owner_id=5, alias='rabotniki', target='employees', is_table=True, is_aggregate=False)
+2025-05-14 13:06:45,682 - applogger - Context set!
+2025-05-14 13:06:45,683 - applogger - Found alias in cache: alias_id=12 owner_id=5 alias='rabotniki' target='employees' is_table=True is_aggregate=False
+2025-05-14 13:06:45,684 - applogger - Found alias in cache: alias_id=13 owner_id=5 alias='zp' target='employees.salary' is_table=False is_aggregate=False
+2025-05-14 13:06:45,685 - applogger - Found alias in cache: alias_id=22 owner_id=5 alias='имя работника' target='`employees`.`name`' is_table=False is_aggregate=False
+2025-05-14 13:06:45,686 - applogger - Found alias in cache: alias_id=26 owner_id=5 alias='salary_level' target="CASE WHEN (employees.salary >= 100000) THEN 'High' WHEN (employees.salary >= 50000) THEN 'Medium' ELSE 'Low' END" is_table=False is_aggregate=False
+2025-05-14 13:06:45,686 - applogger - alias=Alias(alias_id=12, owner_id=5, alias='rabotniki', target='employees', is_table=True, is_aggregate=False)
+2025-05-14 14:07:07,411 - applogger - [APP: Startup] Startup began...
+2025-05-14 14:07:07,418 - applogger - [WAIT FOR DB] SELECT 1 Executed -> Database is up and running!
+2025-05-14 14:07:07,419 - applogger - [INIT DB] Creating database tables...(if needed)
+2025-05-14 14:07:07,431 - applogger - [APP: Startup] Startup finished!
+2025-05-14 14:08:34,194 - applogger - Context set!
+2025-05-14 14:08:34,200 - applogger - database returned that alias_id=12 target='employees' is_aggregate=False owner_id=5 alias='rabotniki' is_table=True as an alias for name=alias_id=12 target='employees' is_aggregate=False owner_id=5 alias='rabotniki' is_table=True ownerid=5
+2025-05-14 14:08:34,213 - applogger - Pulled alias from DB and cached: alias_id=12 target='employees' is_aggregate=False owner_id=5 alias='rabotniki' is_table=True
+2025-05-14 14:08:34,217 - applogger - database returned that alias_id=13 target='employees.salary' is_aggregate=False owner_id=5 alias='zp' is_table=False as an alias for name=alias_id=13 target='employees.salary' is_aggregate=False owner_id=5 alias='zp' is_table=False ownerid=5
+2025-05-14 14:08:34,218 - applogger - Pulled alias from DB and cached: alias_id=13 target='employees.salary' is_aggregate=False owner_id=5 alias='zp' is_table=False
+2025-05-14 14:08:34,219 - applogger - alias=Alias(alias_id=12, target='employees', is_aggregate=False, owner_id=5, alias='rabotniki', is_table=True)
+2025-05-14 15:17:09,170 - applogger - [APP: Startup] Startup began...
+2025-05-14 15:17:09,194 - applogger - [WAIT FOR DB] SELECT 1 Executed -> Database is up and running!
+2025-05-14 15:17:09,195 - applogger - [INIT DB] Creating database tables...(if needed)
+2025-05-14 15:17:09,207 - applogger - [APP: Startup] Startup finished!
+2025-05-14 15:27:10,013 - applogger - Context set!
+2025-05-14 15:27:10,042 - applogger - database returned that alias='rabotniki' owner_id=5 is_table=True alias_id=12 target='employees' is_aggregate=False as an alias for name=alias='rabotniki' owner_id=5 is_table=True alias_id=12 target='employees' is_aggregate=False ownerid=5
+2025-05-14 15:27:10,057 - applogger - Pulled alias from DB and cached: alias='rabotniki' owner_id=5 is_table=True alias_id=12 target='employees' is_aggregate=False
+2025-05-14 15:27:10,059 - applogger - database returned that None as an alias for name=None ownerid=5
+2025-05-14 15:27:10,059 - applogger - Alias not found in DB
+2025-05-14 15:27:47,991 - applogger - Context set!
+2025-05-14 15:27:47,992 - applogger - Found alias in cache: alias_id=12 owner_id=5 alias='rabotniki' target='employees' is_table=True is_aggregate=False
+2025-05-14 15:27:48,016 - applogger - database returned that None as an alias for name=None ownerid=5
+2025-05-14 15:27:48,017 - applogger - Alias not found in DB
+2025-05-14 15:27:53,006 - applogger - Context set!
+2025-05-14 15:27:53,007 - applogger - Found alias in cache: alias_id=12 owner_id=5 alias='rabotniki' target='employees' is_table=True is_aggregate=False
+2025-05-14 15:27:53,011 - applogger - database returned that alias='avg_sal' owner_id=5 is_table=False alias_id=6 target='AVG((employees.salary + 2))' is_aggregate=True as an alias for name=alias='avg_sal' owner_id=5 is_table=False alias_id=6 target='AVG((employees.salary + 2))' is_aggregate=True ownerid=5
+2025-05-14 15:27:53,058 - applogger - Pulled alias from DB and cached: alias='avg_sal' owner_id=5 is_table=False alias_id=6 target='AVG((employees.salary + 2))' is_aggregate=True
+2025-05-14 15:34:50,109 - applogger - [APP: Startup] Startup began...
+2025-05-14 15:34:50,116 - applogger - [WAIT FOR DB] SELECT 1 Executed -> Database is up and running!
+2025-05-14 15:34:50,118 - applogger - [INIT DB] Creating database tables...(if needed)
+2025-05-14 15:34:50,133 - applogger - [APP: Startup] Startup finished!
+2025-05-14 15:35:42,201 - applogger - Context set!
+2025-05-14 15:35:42,202 - applogger - Found alias in cache: alias_id=12 owner_id=5 alias='rabotniki' target='employees' is_table=True is_aggregate=False
+2025-05-14 15:35:42,211 - applogger - database returned that None as an alias for name=None ownerid=5
+2025-05-14 16:04:14,340 - applogger - Context set!
+2025-05-14 16:04:14,342 - applogger - Found alias in cache: alias_id=12 owner_id=5 alias='rabotniki' target='employees' is_table=True is_aggregate=False
+2025-05-14 16:04:14,343 - applogger - Found alias in cache: alias_id=6 owner_id=5 alias='avg_sal' target='AVG((employees.salary + 2))' is_table=False is_aggregate=True
+2025-05-14 16:34:12,601 - applogger - [APP: Startup] Startup began...
+2025-05-14 16:34:12,607 - applogger - [WAIT FOR DB] SELECT 1 Executed -> Database is up and running!
+2025-05-14 16:34:12,608 - applogger - [INIT DB] Creating database tables...(if needed)
+2025-05-14 16:34:12,624 - applogger - [APP: Startup] Startup finished!
+2025-05-14 16:38:34,754 - applogger - [APP: Startup] Startup began...
+2025-05-14 16:38:34,760 - applogger - [WAIT FOR DB] SELECT 1 Executed -> Database is up and running!
+2025-05-14 16:38:34,761 - applogger - [INIT DB] Creating database tables...(if needed)
+2025-05-14 16:38:34,777 - applogger - [APP: Startup] Startup finished!
+2025-05-14 16:39:07,477 - applogger - Context set!
+2025-05-14 16:39:07,481 - applogger - database returned that alias_id=12 target='employees' is_aggregate=False owner_id=5 alias='rabotniki' is_table=True as an alias for name=alias_id=12 target='employees' is_aggregate=False owner_id=5 alias='rabotniki' is_table=True ownerid=5
+2025-05-14 16:39:07,497 - applogger - Pulled alias from DB and cached: alias_id=12 target='employees' is_aggregate=False owner_id=5 alias='rabotniki' is_table=True
+2025-05-14 16:39:07,500 - applogger - database returned that alias_id=13 target='employees.salary' is_aggregate=False owner_id=5 alias='zp' is_table=False as an alias for name=alias_id=13 target='employees.salary' is_aggregate=False owner_id=5 alias='zp' is_table=False ownerid=5
+2025-05-14 16:39:07,501 - applogger - Pulled alias from DB and cached: alias_id=13 target='employees.salary' is_aggregate=False owner_id=5 alias='zp' is_table=False
+2025-05-14 16:39:07,506 - applogger - Found alias in cache: alias_id=13 owner_id=5 alias='zp' target='employees.salary' is_table=False is_aggregate=False
+2025-05-14 16:39:07,513 - applogger - alias=Alias(alias_id=12, target='employees', is_aggregate=False, owner_id=5, alias='rabotniki', is_table=True)
+2025-05-14 16:39:07,679 - applogger - Exception: (pymysql.err.ProgrammingError) (1064, "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '<bound method _AliasedExpr.sql of _AliasedExpr(alias=Alias(alias_id=13, owner_id' at line 1")
+[SQL: SELECT employees.salary AS `zp` FROM employees  WHERE NOT <bound method _AliasedExpr.sql of _AliasedExpr(alias=Alias(alias_id=13, owner_id=5, alias='zp', target='employees.salary', is_table=False, is_aggregate=False))> IS NULL;]
+(Background on this error at: https://sqlalche.me/e/20/f405) of class ProgrammingError
+Traceback:  File "/app/app/routers/actions.py", line 82, in new_query
+    await dbsession.execute(text(query.sql()))
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/ext/asyncio/session.py", line 463, in execute
+    result = await greenlet_spawn(
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 201, in greenlet_spawn
+    result = context.throw(*sys.exc_info())
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/session.py", line 2365, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/session.py", line 2260, in _execute_internal
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1416, in execute
+    return meth(
+           ^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/sql/elements.py", line 516, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1638, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1843, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1983, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 2352, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 942, in do_execute
+    cursor.execute(statement, parameters)
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/mysql/aiomysql.py", line 97, in execute
+    return self.await_(self._execute_async(operation, parameters))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+            ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/mysql/aiomysql.py", line 106, in _execute_async
+    result = await self._cursor.execute(operation, parameters)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/aiomysql/cursors.py", line 239, in execute
+    await self._query(query)
+  File "/usr/local/lib/python3.11/site-packages/aiomysql/cursors.py", line 457, in _query
+    await conn.query(q)
+  File "/usr/local/lib/python3.11/site-packages/aiomysql/connection.py", line 469, in query
+    await self._read_query_result(unbuffered=unbuffered)
+  File "/usr/local/lib/python3.11/site-packages/aiomysql/connection.py", line 683, in _read_query_result
+    await result.read()
+  File "/usr/local/lib/python3.11/site-packages/aiomysql/connection.py", line 1164, in read
+    first_packet = await self.connection._read_packet()
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/aiomysql/connection.py", line 652, in _read_packet
+    packet.raise_for_error()
+  File "/usr/local/lib/python3.11/site-packages/pymysql/protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "/usr/local/lib/python3.11/site-packages/pymysql/err.py", line 150, in raise_mysql_exception
+    raise errorclass(errno, errval)
+
+2025-05-14 16:39:12,251 - applogger - Context set!
+2025-05-14 16:39:12,253 - applogger - Found alias in cache: alias_id=12 owner_id=5 alias='rabotniki' target='employees' is_table=True is_aggregate=False
+2025-05-14 16:39:12,254 - applogger - Found alias in cache: alias_id=13 owner_id=5 alias='zp' target='employees.salary' is_table=False is_aggregate=False
+2025-05-14 16:39:12,255 - applogger - Found alias in cache: alias_id=13 owner_id=5 alias='zp' target='employees.salary' is_table=False is_aggregate=False
+2025-05-14 16:39:12,256 - applogger - alias=Alias(alias_id=12, owner_id=5, alias='rabotniki', target='employees', is_table=True, is_aggregate=False)
+2025-05-14 16:39:12,258 - applogger - Exception: (pymysql.err.ProgrammingError) (1064, "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '<bound method _AliasedExpr.sql of _AliasedExpr(alias=Alias(alias_id=13, owner_id' at line 1")
+[SQL: SELECT employees.salary AS `zp` FROM employees  WHERE NOT <bound method _AliasedExpr.sql of _AliasedExpr(alias=Alias(alias_id=13, owner_id=5, alias='zp', target='employees.salary', is_table=False, is_aggregate=False))> IS NULL;]
+(Background on this error at: https://sqlalche.me/e/20/f405) of class ProgrammingError
+Traceback:  File "/app/app/routers/actions.py", line 82, in new_query
+    await dbsession.execute(text(query.sql()))
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/ext/asyncio/session.py", line 463, in execute
+    result = await greenlet_spawn(
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 201, in greenlet_spawn
+    result = context.throw(*sys.exc_info())
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/session.py", line 2365, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/session.py", line 2260, in _execute_internal
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1416, in execute
+    return meth(
+           ^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/sql/elements.py", line 516, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1638, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1843, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1983, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 2352, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 942, in do_execute
+    cursor.execute(statement, parameters)
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/mysql/aiomysql.py", line 97, in execute
+    return self.await_(self._execute_async(operation, parameters))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+            ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/mysql/aiomysql.py", line 106, in _execute_async
+    result = await self._cursor.execute(operation, parameters)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/aiomysql/cursors.py", line 239, in execute
+    await self._query(query)
+  File "/usr/local/lib/python3.11/site-packages/aiomysql/cursors.py", line 457, in _query
+    await conn.query(q)
+  File "/usr/local/lib/python3.11/site-packages/aiomysql/connection.py", line 469, in query
+    await self._read_query_result(unbuffered=unbuffered)
+  File "/usr/local/lib/python3.11/site-packages/aiomysql/connection.py", line 683, in _read_query_result
+    await result.read()
+  File "/usr/local/lib/python3.11/site-packages/aiomysql/connection.py", line 1164, in read
+    first_packet = await self.connection._read_packet()
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/aiomysql/connection.py", line 652, in _read_packet
+    packet.raise_for_error()
+  File "/usr/local/lib/python3.11/site-packages/pymysql/protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "/usr/local/lib/python3.11/site-packages/pymysql/err.py", line 150, in raise_mysql_exception
+    raise errorclass(errno, errval)
+
+2025-05-14 16:40:09,206 - applogger - Context set!
+2025-05-14 16:40:09,207 - applogger - Found alias in cache: alias_id=12 owner_id=5 alias='rabotniki' target='employees' is_table=True is_aggregate=False
+2025-05-14 16:40:09,208 - applogger - Found alias in cache: alias_id=13 owner_id=5 alias='zp' target='employees.salary' is_table=False is_aggregate=False
+2025-05-14 16:40:09,209 - applogger - Found alias in cache: alias_id=13 owner_id=5 alias='zp' target='employees.salary' is_table=False is_aggregate=False
+2025-05-14 16:40:09,210 - applogger - alias=Alias(alias_id=12, owner_id=5, alias='rabotniki', target='employees', is_table=True, is_aggregate=False)
+2025-05-14 16:40:09,213 - applogger - Exception: (pymysql.err.ProgrammingError) (1064, "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '<bound method _AliasedExpr.sql of _AliasedExpr(alias=Alias(alias_id=13, owner_id' at line 1")
+[SQL: SELECT employees.salary AS `zp` FROM employees  WHERE NOT <bound method _AliasedExpr.sql of _AliasedExpr(alias=Alias(alias_id=13, owner_id=5, alias='zp', target='employees.salary', is_table=False, is_aggregate=False))> IS NULL;]
+(Background on this error at: https://sqlalche.me/e/20/f405) of class ProgrammingError
+Traceback:  File "/app/app/routers/actions.py", line 82, in new_query
+    await dbsession.execute(text(query.sql()))
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/ext/asyncio/session.py", line 463, in execute
+    result = await greenlet_spawn(
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 201, in greenlet_spawn
+    result = context.throw(*sys.exc_info())
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/session.py", line 2365, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/session.py", line 2260, in _execute_internal
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1416, in execute
+    return meth(
+           ^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/sql/elements.py", line 516, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1638, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1843, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1983, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 2352, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 942, in do_execute
+    cursor.execute(statement, parameters)
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/mysql/aiomysql.py", line 97, in execute
+    return self.await_(self._execute_async(operation, parameters))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+            ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/mysql/aiomysql.py", line 106, in _execute_async
+    result = await self._cursor.execute(operation, parameters)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/aiomysql/cursors.py", line 239, in execute
+    await self._query(query)
+  File "/usr/local/lib/python3.11/site-packages/aiomysql/cursors.py", line 457, in _query
+    await conn.query(q)
+  File "/usr/local/lib/python3.11/site-packages/aiomysql/connection.py", line 469, in query
+    await self._read_query_result(unbuffered=unbuffered)
+  File "/usr/local/lib/python3.11/site-packages/aiomysql/connection.py", line 683, in _read_query_result
+    await result.read()
+  File "/usr/local/lib/python3.11/site-packages/aiomysql/connection.py", line 1164, in read
+    first_packet = await self.connection._read_packet()
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/aiomysql/connection.py", line 652, in _read_packet
+    packet.raise_for_error()
+  File "/usr/local/lib/python3.11/site-packages/pymysql/protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "/usr/local/lib/python3.11/site-packages/pymysql/err.py", line 150, in raise_mysql_exception
+    raise errorclass(errno, errval)
+
+2025-05-14 16:40:10,295 - applogger - Context set!
+2025-05-14 16:40:10,296 - applogger - Found alias in cache: alias_id=12 owner_id=5 alias='rabotniki' target='employees' is_table=True is_aggregate=False
+2025-05-14 16:40:10,297 - applogger - Found alias in cache: alias_id=13 owner_id=5 alias='zp' target='employees.salary' is_table=False is_aggregate=False
+2025-05-14 16:40:10,298 - applogger - Found alias in cache: alias_id=13 owner_id=5 alias='zp' target='employees.salary' is_table=False is_aggregate=False
+2025-05-14 16:40:10,299 - applogger - alias=Alias(alias_id=12, owner_id=5, alias='rabotniki', target='employees', is_table=True, is_aggregate=False)
+2025-05-14 16:40:10,301 - applogger - Exception: (pymysql.err.ProgrammingError) (1064, "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '<bound method _AliasedExpr.sql of _AliasedExpr(alias=Alias(alias_id=13, owner_id' at line 1")
+[SQL: SELECT employees.salary AS `zp` FROM employees  WHERE NOT <bound method _AliasedExpr.sql of _AliasedExpr(alias=Alias(alias_id=13, owner_id=5, alias='zp', target='employees.salary', is_table=False, is_aggregate=False))> IS NULL;]
+(Background on this error at: https://sqlalche.me/e/20/f405) of class ProgrammingError
+Traceback:  File "/app/app/routers/actions.py", line 82, in new_query
+    await dbsession.execute(text(query.sql()))
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/ext/asyncio/session.py", line 463, in execute
+    result = await greenlet_spawn(
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 201, in greenlet_spawn
+    result = context.throw(*sys.exc_info())
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/session.py", line 2365, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/session.py", line 2260, in _execute_internal
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1416, in execute
+    return meth(
+           ^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/sql/elements.py", line 516, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1638, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1843, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1983, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 2352, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 942, in do_execute
+    cursor.execute(statement, parameters)
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/mysql/aiomysql.py", line 97, in execute
+    return self.await_(self._execute_async(operation, parameters))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+            ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/mysql/aiomysql.py", line 106, in _execute_async
+    result = await self._cursor.execute(operation, parameters)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/aiomysql/cursors.py", line 239, in execute
+    await self._query(query)
+  File "/usr/local/lib/python3.11/site-packages/aiomysql/cursors.py", line 457, in _query
+    await conn.query(q)
+  File "/usr/local/lib/python3.11/site-packages/aiomysql/connection.py", line 469, in query
+    await self._read_query_result(unbuffered=unbuffered)
+  File "/usr/local/lib/python3.11/site-packages/aiomysql/connection.py", line 683, in _read_query_result
+    await result.read()
+  File "/usr/local/lib/python3.11/site-packages/aiomysql/connection.py", line 1164, in read
+    first_packet = await self.connection._read_packet()
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/aiomysql/connection.py", line 652, in _read_packet
+    packet.raise_for_error()
+  File "/usr/local/lib/python3.11/site-packages/pymysql/protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "/usr/local/lib/python3.11/site-packages/pymysql/err.py", line 150, in raise_mysql_exception
+    raise errorclass(errno, errval)
+
+2025-05-14 16:41:41,190 - applogger - [APP: Startup] Startup began...
+2025-05-14 16:41:41,196 - applogger - [WAIT FOR DB] SELECT 1 Executed -> Database is up and running!
+2025-05-14 16:41:41,197 - applogger - [INIT DB] Creating database tables...(if needed)
+2025-05-14 16:41:41,209 - applogger - [APP: Startup] Startup finished!
+2025-05-14 16:41:52,469 - applogger - Context set!
+2025-05-14 16:41:52,470 - applogger - Found alias in cache: alias_id=12 owner_id=5 alias='rabotniki' target='employees' is_table=True is_aggregate=False
+2025-05-14 16:41:52,479 - applogger - Found alias in cache: alias_id=13 owner_id=5 alias='zp' target='employees.salary' is_table=False is_aggregate=False
+2025-05-14 16:41:52,480 - applogger - Found alias in cache: alias_id=13 owner_id=5 alias='zp' target='employees.salary' is_table=False is_aggregate=False
+2025-05-14 16:41:52,480 - applogger - alias=Alias(alias_id=12, owner_id=5, alias='rabotniki', target='employees', is_table=True, is_aggregate=False)
+2025-05-14 16:45:40,160 - applogger - [APP: Startup] Startup began...
+2025-05-14 16:45:40,166 - applogger - [WAIT FOR DB] SELECT 1 Executed -> Database is up and running!
+2025-05-14 16:45:40,167 - applogger - [INIT DB] Creating database tables...(if needed)
+2025-05-14 16:45:40,182 - applogger - [APP: Startup] Startup finished!
+2025-05-14 16:46:17,355 - applogger - Context set!
+2025-05-14 16:46:17,357 - applogger - Found alias in cache: alias_id=12 owner_id=5 alias='rabotniki' target='employees' is_table=True is_aggregate=False
+2025-05-14 16:46:17,366 - applogger - Found alias in cache: alias_id=13 owner_id=5 alias='zp' target='employees.salary' is_table=False is_aggregate=False
+2025-05-14 16:46:17,367 - applogger - Found alias in cache: alias_id=13 owner_id=5 alias='zp' target='employees.salary' is_table=False is_aggregate=False
+2025-05-14 16:46:17,368 - applogger - alias=Alias(alias_id=12, owner_id=5, alias='rabotniki', target='employees', is_table=True, is_aggregate=False)
+2025-05-15 10:32:07,487 - applogger - [APP: Startup] Startup began...
+2025-05-15 10:32:08,109 - applogger - [WAIT FOR DB] SELECT 1 Executed -> Database is up and running!
+2025-05-15 10:32:08,110 - applogger - [INIT DB] Creating database tables...(if needed)
+2025-05-15 10:32:08,573 - applogger - [APP: Startup] Startup finished!
+2025-05-15 13:50:01,695 - applogger - [APP: Startup] Startup began...
+2025-05-15 13:50:01,711 - applogger - [WAIT FOR DB] SELECT 1 Executed -> Database is up and running!
+2025-05-15 13:50:01,712 - applogger - [INIT DB] Creating database tables...(if needed)
+2025-05-15 13:50:01,731 - applogger - [APP: Startup] Startup finished!
+2025-05-15 14:08:12,556 - applogger - Context set!
+2025-05-15 14:08:12,616 - applogger - database returned that owner_id=5 alias='rabotniki' is_table=True target='employees' alias_id=12 is_aggregate=False as an alias for name=owner_id=5 alias='rabotniki' is_table=True target='employees' alias_id=12 is_aggregate=False ownerid=5
+2025-05-15 14:08:12,655 - applogger - Pulled alias from DB and cached: owner_id=5 alias='rabotniki' is_table=True target='employees' alias_id=12 is_aggregate=False
+2025-05-15 14:08:12,658 - applogger - database returned that owner_id=5 alias='avg_sal' is_table=False target='AVG((employees.salary + 2))' alias_id=6 is_aggregate=True as an alias for name=owner_id=5 alias='avg_sal' is_table=False target='AVG((employees.salary + 2))' alias_id=6 is_aggregate=True ownerid=5
+2025-05-15 14:08:12,661 - applogger - Pulled alias from DB and cached: owner_id=5 alias='avg_sal' is_table=False target='AVG((employees.salary + 2))' alias_id=6 is_aggregate=True
+2025-05-15 14:08:12,703 - applogger - alias=Alias(owner_id=5, alias='rabotniki', is_table=True, target='employees', alias_id=12, is_aggregate=False)
+2025-05-15 14:17:28,710 - applogger - [APP: Startup] Startup began...
+2025-05-15 14:17:28,727 - applogger - [WAIT FOR DB] SELECT 1 Executed -> Database is up and running!
+2025-05-15 14:17:28,728 - applogger - [INIT DB] Creating database tables...(if needed)
+2025-05-15 14:17:28,770 - applogger - [APP: Startup] Startup finished!
+2025-05-15 14:19:28,862 - applogger - [APP: Startup] Startup began...
+2025-05-15 14:19:28,931 - applogger - [WAIT FOR DB] SELECT 1 Executed -> Database is up and running!
+2025-05-15 14:19:28,933 - applogger - [INIT DB] Creating database tables...(if needed)
+2025-05-15 14:19:28,951 - applogger - [APP: Startup] Startup finished!
+2025-05-15 14:19:33,134 - applogger - Context set!
+2025-05-15 14:19:33,154 - applogger - Found alias in cache: alias_id=12 owner_id=5 alias='rabotniki' target='employees' is_table=True is_aggregate=False
+2025-05-15 14:19:33,176 - applogger - database returned that alias='имя работника' owner_id=5 is_table=False alias_id=22 target='`employees`.`name`' is_aggregate=False as an alias for name=alias='имя работника' owner_id=5 is_table=False alias_id=22 target='`employees`.`name`' is_aggregate=False ownerid=5
+2025-05-15 14:19:33,197 - applogger - Pulled alias from DB and cached: alias='имя работника' owner_id=5 is_table=False alias_id=22 target='`employees`.`name`' is_aggregate=False
+2025-05-15 14:19:33,203 - applogger - database returned that alias='zp' owner_id=5 is_table=False alias_id=13 target='employees.salary' is_aggregate=False as an alias for name=alias='zp' owner_id=5 is_table=False alias_id=13 target='employees.salary' is_aggregate=False ownerid=5
+2025-05-15 14:19:33,204 - applogger - Pulled alias from DB and cached: alias='zp' owner_id=5 is_table=False alias_id=13 target='employees.salary' is_aggregate=False
+2025-05-15 14:19:33,260 - applogger - database returned that query_sql='SELECT AVG((employees.salary + 2)) AS `avg_sal` FROM employees;' query_id=23 col_count=1 name='average_salary_subquery' owner_id=5 col_names=['avg_sal'] as an query for name=query_sql='SELECT AVG((employees.salary + 2)) AS `avg_sal` FROM employees;' query_id=23 col_count=1 name='average_salary_subquery' owner_id=5 col_names=['avg_sal'] ownerid=5
+2025-05-15 14:19:33,262 - applogger - Pulled query from DB and cached: query_sql='SELECT AVG((employees.salary + 2)) AS `avg_sal` FROM employees;' query_id=23 col_count=1 name='average_salary_subquery' owner_id=5 col_names=['avg_sal']
+2025-05-15 14:19:33,262 - applogger - alias=Alias(alias_id=12, owner_id=5, alias='rabotniki', target='employees', is_table=True, is_aggregate=False)
+2025-05-15 14:19:33,309 - applogger - Exception: '_SelectSubquery' object has no attribute '_sql' of class AttributeError
+Traceback:  File "/app/app/routers/actions.py", line 90, in new_query
+    result = await dbsession.execute(text(query.sql()))
+                                          ^^^^^^^^^^^
+  File "/app/app/models/sql.py", line 856, in sql
+    return f"{self.select.sql()} {self.where.sql()} {self.groupby.sql()} {self.having.sql()} {self.orderby.sql()} {self.limit.sql()}".strip() + ';'
+              ^^^^^^^^^^^^^^^^^
+  File "/app/app/models/sql.py", line 827, in sql
+    cols_sql = ', '.join([x.sql_as() if isinstance(x,(_AliasedExpr,_SelectSubquery)) else x.sql() for x in self.columns])
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/app/models/sql.py", line 827, in <listcomp>
+    cols_sql = ', '.join([x.sql_as() if isinstance(x,(_AliasedExpr,_SelectSubquery)) else x.sql() for x in self.columns])
+                          ^^^^^^^^^^
+  File "/app/app/models/sql.py", line 892, in sql_as
+    return f'({self._sql}) AS `{self.query.name}`'
+               ^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/pydantic/main.py", line 970, in __getattr__
+    raise AttributeError(f'{type(self).__name__!r} object has no attribute {item!r}') from exc
+
+2025-05-15 14:22:02,768 - applogger - [APP: Startup] Startup began...
+2025-05-15 14:22:02,811 - applogger - [WAIT FOR DB] SELECT 1 Executed -> Database is up and running!
+2025-05-15 14:22:02,812 - applogger - [INIT DB] Creating database tables...(if needed)
+2025-05-15 14:22:02,849 - applogger - [APP: Startup] Startup finished!
+2025-05-15 14:22:20,084 - applogger - Context set!
+2025-05-15 14:22:20,086 - applogger - Found alias in cache: alias_id=12 owner_id=5 alias='rabotniki' target='employees' is_table=True is_aggregate=False
+2025-05-15 14:22:20,126 - applogger - Found alias in cache: alias_id=22 owner_id=5 alias='имя работника' target='`employees`.`name`' is_table=False is_aggregate=False
+2025-05-15 14:22:20,128 - applogger - Found alias in cache: alias_id=13 owner_id=5 alias='zp' target='employees.salary' is_table=False is_aggregate=False
+2025-05-15 14:22:20,129 - applogger - Found query in cache: query_id=23 owner_id=5 name='average_salary_subquery' query_sql='SELECT AVG((employees.salary + 2)) AS `avg_sal` FROM employees;' col_names=['avg_sal'] col_count=1
+2025-05-15 14:22:20,129 - applogger - alias=Alias(alias_id=12, owner_id=5, alias='rabotniki', target='employees', is_table=True, is_aggregate=False)
+2025-05-15 15:09:33,878 - applogger - [APP: Startup] Startup began...
+2025-05-15 15:09:33,928 - applogger - [WAIT FOR DB] SELECT 1 Executed -> Database is up and running!
+2025-05-15 15:09:33,928 - applogger - [INIT DB] Creating database tables...(if needed)
+2025-05-15 15:09:33,964 - applogger - [APP: Startup] Startup finished!
+2025-05-15 15:10:49,097 - applogger - Context set!
+2025-05-15 15:10:49,101 - applogger - Found query in cache: query_id=23 owner_id=5 name='average_salary_subquery' query_sql='SELECT AVG((employees.salary + 2)) AS `avg_sal` FROM employees;' col_names=['avg_sal'] col_count=1
+2025-05-15 15:10:49,137 - applogger - Found alias in cache: alias_id=13 owner_id=5 alias='zp' target='employees.salary' is_table=False is_aggregate=False
+2025-05-15 15:13:11,685 - applogger - [APP: Startup] Startup began...
+2025-05-15 15:13:11,750 - applogger - [WAIT FOR DB] SELECT 1 Executed -> Database is up and running!
+2025-05-15 15:13:11,751 - applogger - [INIT DB] Creating database tables...(if needed)
+2025-05-15 15:13:11,773 - applogger - [APP: Startup] Startup finished!
+2025-05-15 15:14:18,356 - applogger - Context set!
+2025-05-15 15:14:18,358 - applogger - Found query in cache: query_id=23 owner_id=5 name='average_salary_subquery' query_sql='SELECT AVG((employees.salary + 2)) AS `avg_sal` FROM employees;' col_names=['avg_sal'] col_count=1
+2025-05-15 15:14:18,370 - applogger - Found alias in cache: alias_id=13 owner_id=5 alias='zp' target='employees.salary' is_table=False is_aggregate=False
+2025-05-15 15:14:18,403 - applogger - Found query in cache: query_id=23 owner_id=5 name='average_salary_subquery' query_sql='SELECT AVG((employees.salary + 2)) AS `avg_sal` FROM employees;' col_names=['avg_sal'] col_count=1
+2025-05-15 15:14:18,405 - applogger - Found alias in cache: alias_id=13 owner_id=5 alias='zp' target='employees.salary' is_table=False is_aggregate=False
+2025-05-15 15:16:47,479 - applogger - Context set!
+2025-05-15 15:16:47,484 - applogger - database returned that alias_id=12 target='employees' is_aggregate=False owner_id=5 alias='rabotniki' is_table=True as an alias for name=alias_id=12 target='employees' is_aggregate=False owner_id=5 alias='rabotniki' is_table=True ownerid=5
+2025-05-15 15:16:47,507 - applogger - Pulled alias from DB and cached: alias_id=12 target='employees' is_aggregate=False owner_id=5 alias='rabotniki' is_table=True
+2025-05-15 15:16:47,508 - applogger - Found alias in cache: alias_id=22 owner_id=5 alias='имя работника' target='`employees`.`name`' is_table=False is_aggregate=False
+2025-05-15 15:16:47,509 - applogger - Found alias in cache: alias_id=13 owner_id=5 alias='zp' target='employees.salary' is_table=False is_aggregate=False
+2025-05-15 15:16:47,513 - applogger - database returned that alias_id=27 target='((SELECT AVG((employees.salary + 2)) AS `avg_sal` FROM employees) - employees.salary)' is_aggregate=False owner_id=5 alias='отличие зп от средней' is_table=False as an alias for name=alias_id=27 target='((SELECT AVG((employees.salary + 2)) AS `avg_sal` FROM employees) - employees.salary)' is_aggregate=False owner_id=5 alias='отличие зп от средней' is_table=False ownerid=5
+2025-05-15 15:16:47,514 - applogger - Pulled alias from DB and cached: alias_id=27 target='((SELECT AVG((employees.salary + 2)) AS `avg_sal` FROM employees) - employees.salary)' is_aggregate=False owner_id=5 alias='отличие зп от средней' is_table=False
+2025-05-15 15:16:47,515 - applogger - alias=Alias(alias_id=12, target='employees', is_aggregate=False, owner_id=5, alias='rabotniki', is_table=True)
+2025-05-15 15:17:05,192 - applogger - Context set!
+2025-05-15 15:17:05,195 - applogger - Found alias in cache: alias_id=12 owner_id=5 alias='rabotniki' target='employees' is_table=True is_aggregate=False
+2025-05-15 15:17:05,196 - applogger - Found alias in cache: alias_id=22 owner_id=5 alias='имя работника' target='`employees`.`name`' is_table=False is_aggregate=False
+2025-05-15 15:17:05,197 - applogger - Found alias in cache: alias_id=13 owner_id=5 alias='zp' target='employees.salary' is_table=False is_aggregate=False
+2025-05-15 15:17:05,199 - applogger - Found alias in cache: alias_id=27 owner_id=5 alias='отличие зп от средней' target='((SELECT AVG((employees.salary + 2)) AS `avg_sal` FROM employees) - employees.salary)' is_table=False is_aggregate=False
+2025-05-15 15:17:05,200 - applogger - alias=Alias(alias_id=12, owner_id=5, alias='rabotniki', target='employees', is_table=True, is_aggregate=False)
+2025-05-15 15:19:04,688 - applogger - Context set!
+2025-05-15 15:19:04,689 - applogger - Found alias in cache: alias_id=13 owner_id=5 alias='zp' target='employees.salary' is_table=False is_aggregate=False
+2025-05-15 15:19:04,691 - applogger - Found query in cache: query_id=23 owner_id=5 name='average_salary_subquery' query_sql='SELECT AVG((employees.salary + 2)) AS `avg_sal` FROM employees;' col_names=['avg_sal'] col_count=1
+2025-05-15 15:19:04,699 - applogger - Found alias in cache: alias_id=13 owner_id=5 alias='zp' target='employees.salary' is_table=False is_aggregate=False
+2025-05-15 15:19:04,700 - applogger - Found query in cache: query_id=23 owner_id=5 name='average_salary_subquery' query_sql='SELECT AVG((employees.salary + 2)) AS `avg_sal` FROM employees;' col_names=['avg_sal'] col_count=1
+2025-05-15 15:19:53,618 - applogger - Context set!
+2025-05-15 15:19:53,620 - applogger - Found alias in cache: alias_id=12 owner_id=5 alias='rabotniki' target='employees' is_table=True is_aggregate=False
+2025-05-15 15:19:53,628 - applogger - database returned that alias_id=22 target='`employees`.`name`' is_aggregate=False owner_id=5 alias='имя работника' is_table=False as an alias for name=alias_id=22 target='`employees`.`name`' is_aggregate=False owner_id=5 alias='имя работника' is_table=False ownerid=5
+2025-05-15 15:19:53,656 - applogger - Pulled alias from DB and cached: alias_id=22 target='`employees`.`name`' is_aggregate=False owner_id=5 alias='имя работника' is_table=False
+2025-05-15 15:19:53,659 - applogger - database returned that alias_id=13 target='employees.salary' is_aggregate=False owner_id=5 alias='zp' is_table=False as an alias for name=alias_id=13 target='employees.salary' is_aggregate=False owner_id=5 alias='zp' is_table=False ownerid=5
+2025-05-15 15:19:53,660 - applogger - Pulled alias from DB and cached: alias_id=13 target='employees.salary' is_aggregate=False owner_id=5 alias='zp' is_table=False
+2025-05-15 15:19:53,663 - applogger - database returned that alias_id=28 target='(employees.salary - (SELECT AVG((employees.salary + 2)) AS `avg_sal` FROM employees))' is_aggregate=False owner_id=5 alias='отличие зп от средней' is_table=False as an alias for name=alias_id=28 target='(employees.salary - (SELECT AVG((employees.salary + 2)) AS `avg_sal` FROM employees))' is_aggregate=False owner_id=5 alias='отличие зп от средней' is_table=False ownerid=5
+2025-05-15 15:19:53,665 - applogger - Pulled alias from DB and cached: alias_id=28 target='(employees.salary - (SELECT AVG((employees.salary + 2)) AS `avg_sal` FROM employees))' is_aggregate=False owner_id=5 alias='отличие зп от средней' is_table=False
+2025-05-15 15:19:53,666 - applogger - alias=Alias(alias_id=12, owner_id=5, alias='rabotniki', target='employees', is_table=True, is_aggregate=False)
+2025-05-15 15:25:17,057 - applogger - [APP: Startup] Startup began...
+2025-05-15 15:25:17,073 - applogger - [WAIT FOR DB] SELECT 1 Executed -> Database is up and running!
+2025-05-15 15:25:17,074 - applogger - [INIT DB] Creating database tables...(if needed)
+2025-05-15 15:25:17,092 - applogger - [APP: Startup] Startup finished!
+2025-05-15 15:26:33,899 - applogger - Context set!
+2025-05-15 15:26:33,925 - applogger - Found alias in cache: alias_id=12 owner_id=5 alias='rabotniki' target='employees' is_table=True is_aggregate=False
+2025-05-15 15:26:34,016 - applogger - database returned that alias_id=20 target='departments.location' is_aggregate=False owner_id=5 alias='город' is_table=False as an alias for name=alias_id=20 target='departments.location' is_aggregate=False owner_id=5 alias='город' is_table=False ownerid=5
+2025-05-15 15:26:34,040 - applogger - Pulled alias from DB and cached: alias_id=20 target='departments.location' is_aggregate=False owner_id=5 alias='город' is_table=False
+2025-05-15 15:26:34,042 - applogger - Found alias in cache: alias_id=13 owner_id=5 alias='zp' target='employees.salary' is_table=False is_aggregate=False
+2025-05-15 15:26:34,044 - applogger - Found alias in cache: alias_id=28 owner_id=5 alias='отличие зп от средней' target='(employees.salary - (SELECT AVG((employees.salary + 2)) AS `avg_sal` FROM employees))' is_table=False is_aggregate=False
+2025-05-15 15:26:34,045 - applogger - alias=Alias(alias_id=12, owner_id=5, alias='rabotniki', target='employees', is_table=True, is_aggregate=False)
+2025-05-15 15:26:34,298 - applogger - Exception: (pymysql.err.OperationalError) (1054, "Unknown column 'departments.location' in 'field list'")
+[SQL: SELECT departments.location AS `город`, employees.salary AS `zp`, (employees.salary - (SELECT AVG((employees.salary + 2)) AS `avg_sal` FROM employees)) AS `отличие зп от средней` FROM employees;]
+(Background on this error at: https://sqlalche.me/e/20/e3q8) of class OperationalError
+Traceback:  File "/app/app/routers/actions.py", line 90, in new_query
+    result = await dbsession.execute(text(query.sql()))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/ext/asyncio/session.py", line 463, in execute
+    result = await greenlet_spawn(
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 201, in greenlet_spawn
+    result = context.throw(*sys.exc_info())
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/session.py", line 2365, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/session.py", line 2260, in _execute_internal
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1416, in execute
+    return meth(
+           ^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/sql/elements.py", line 516, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1638, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1843, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1983, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 2352, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 942, in do_execute
+    cursor.execute(statement, parameters)
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/mysql/aiomysql.py", line 97, in execute
+    return self.await_(self._execute_async(operation, parameters))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+            ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/mysql/aiomysql.py", line 106, in _execute_async
+    result = await self._cursor.execute(operation, parameters)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/aiomysql/cursors.py", line 239, in execute
+    await self._query(query)
+  File "/usr/local/lib/python3.11/site-packages/aiomysql/cursors.py", line 457, in _query
+    await conn.query(q)
+  File "/usr/local/lib/python3.11/site-packages/aiomysql/connection.py", line 469, in query
+    await self._read_query_result(unbuffered=unbuffered)
+  File "/usr/local/lib/python3.11/site-packages/aiomysql/connection.py", line 683, in _read_query_result
+    await result.read()
+  File "/usr/local/lib/python3.11/site-packages/aiomysql/connection.py", line 1164, in read
+    first_packet = await self.connection._read_packet()
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/aiomysql/connection.py", line 652, in _read_packet
+    packet.raise_for_error()
+  File "/usr/local/lib/python3.11/site-packages/pymysql/protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "/usr/local/lib/python3.11/site-packages/pymysql/err.py", line 150, in raise_mysql_exception
+    raise errorclass(errno, errval)
+
+2025-05-15 15:34:25,319 - applogger - [APP: Startup] Startup began...
+2025-05-15 15:34:25,348 - applogger - [WAIT FOR DB] SELECT 1 Executed -> Database is up and running!
+2025-05-15 15:34:25,350 - applogger - [INIT DB] Creating database tables...(if needed)
+2025-05-15 15:34:25,368 - applogger - [APP: Startup] Startup finished!
+2025-05-15 15:34:41,782 - applogger - Context set!
+2025-05-15 15:34:41,786 - applogger - Found alias in cache: alias_id=12 owner_id=5 alias='rabotniki' target='employees' is_table=True is_aggregate=False
+2025-05-15 15:34:41,795 - applogger - Found alias in cache: alias_id=20 owner_id=5 alias='город' target='departments.location' is_table=False is_aggregate=False
+2025-05-15 15:34:41,796 - applogger - Found alias in cache: alias_id=13 owner_id=5 alias='zp' target='employees.salary' is_table=False is_aggregate=False
+2025-05-15 15:34:41,797 - applogger - Found alias in cache: alias_id=28 owner_id=5 alias='отличие зп от средней' target='(employees.salary - (SELECT AVG((employees.salary + 2)) AS `avg_sal` FROM employees))' is_table=False is_aggregate=False
+2025-05-15 15:34:41,798 - applogger - alias=Alias(alias_id=12, owner_id=5, alias='rabotniki', target='employees', is_table=True, is_aggregate=False)
+2025-05-15 15:34:41,806 - applogger - Exception: (pymysql.err.OperationalError) (1054, "Unknown column 'departments.location' in 'field list'")
+[SQL: SELECT departments.location AS `город`, employees.salary AS `zp`, (employees.salary - (SELECT AVG((employees.salary + 2)) AS `avg_sal` FROM employees)) AS `отличие зп от средней` FROM employees;]
+(Background on this error at: https://sqlalche.me/e/20/e3q8) of class OperationalError
+Traceback:  File "/app/app/routers/actions.py", line 90, in new_query
+    result = await dbsession.execute(text(query.sql()))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/ext/asyncio/session.py", line 463, in execute
+    result = await greenlet_spawn(
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 201, in greenlet_spawn
+    result = context.throw(*sys.exc_info())
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/session.py", line 2365, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/session.py", line 2260, in _execute_internal
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1416, in execute
+    return meth(
+           ^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/sql/elements.py", line 516, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1638, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1843, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1983, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 2352, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 942, in do_execute
+    cursor.execute(statement, parameters)
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/mysql/aiomysql.py", line 97, in execute
+    return self.await_(self._execute_async(operation, parameters))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+            ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/mysql/aiomysql.py", line 106, in _execute_async
+    result = await self._cursor.execute(operation, parameters)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/aiomysql/cursors.py", line 239, in execute
+    await self._query(query)
+  File "/usr/local/lib/python3.11/site-packages/aiomysql/cursors.py", line 457, in _query
+    await conn.query(q)
+  File "/usr/local/lib/python3.11/site-packages/aiomysql/connection.py", line 469, in query
+    await self._read_query_result(unbuffered=unbuffered)
+  File "/usr/local/lib/python3.11/site-packages/aiomysql/connection.py", line 683, in _read_query_result
+    await result.read()
+  File "/usr/local/lib/python3.11/site-packages/aiomysql/connection.py", line 1164, in read
+    first_packet = await self.connection._read_packet()
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/aiomysql/connection.py", line 652, in _read_packet
+    packet.raise_for_error()
+  File "/usr/local/lib/python3.11/site-packages/pymysql/protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "/usr/local/lib/python3.11/site-packages/pymysql/err.py", line 150, in raise_mysql_exception
+    raise errorclass(errno, errval)
+
+2025-05-15 15:38:04,828 - applogger - [APP: Startup] Startup began...
+2025-05-15 15:38:04,875 - applogger - [WAIT FOR DB] SELECT 1 Executed -> Database is up and running!
+2025-05-15 15:38:04,876 - applogger - [INIT DB] Creating database tables...(if needed)
+2025-05-15 15:38:04,893 - applogger - [APP: Startup] Startup finished!
+2025-05-15 15:38:09,790 - applogger - Context set!
+2025-05-15 15:38:09,792 - applogger - Found alias in cache: alias_id=12 owner_id=5 alias='rabotniki' target='employees' is_table=True is_aggregate=False
+2025-05-15 15:38:09,818 - applogger - Found alias in cache: alias_id=20 owner_id=5 alias='город' target='departments.location' is_table=False is_aggregate=False
+2025-05-15 15:38:09,821 - applogger - Found alias in cache: alias_id=13 owner_id=5 alias='zp' target='employees.salary' is_table=False is_aggregate=False
+2025-05-15 15:38:09,823 - applogger - Found alias in cache: alias_id=28 owner_id=5 alias='отличие зп от средней' target='(employees.salary - (SELECT AVG((employees.salary + 2)) AS `avg_sal` FROM employees))' is_table=False is_aggregate=False
+2025-05-15 15:38:09,823 - applogger - alias=Alias(alias_id=12, owner_id=5, alias='rabotniki', target='employees', is_table=True, is_aggregate=False)
+2025-05-15 15:38:09,919 - applogger - Exception: (pymysql.err.OperationalError) (1054, "Unknown column 'departments.location' in 'field list'")
+[SQL: SELECT departments.location AS `город`, employees.salary AS `zp`, (employees.salary - (SELECT AVG((employees.salary + 2)) AS `avg_sal` FROM employees)) AS `отличие зп от средней` FROM employees;]
+(Background on this error at: https://sqlalche.me/e/20/e3q8) of class OperationalError
+Traceback:  File "/app/app/routers/actions.py", line 90, in new_query
+    result = await dbsession.execute(text(query.sql()))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/ext/asyncio/session.py", line 463, in execute
+    result = await greenlet_spawn(
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 201, in greenlet_spawn
+    result = context.throw(*sys.exc_info())
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/session.py", line 2365, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/session.py", line 2260, in _execute_internal
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1416, in execute
+    return meth(
+           ^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/sql/elements.py", line 516, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1638, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1843, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1983, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 2352, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 942, in do_execute
+    cursor.execute(statement, parameters)
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/mysql/aiomysql.py", line 97, in execute
+    return self.await_(self._execute_async(operation, parameters))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+            ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/mysql/aiomysql.py", line 106, in _execute_async
+    result = await self._cursor.execute(operation, parameters)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/aiomysql/cursors.py", line 239, in execute
+    await self._query(query)
+  File "/usr/local/lib/python3.11/site-packages/aiomysql/cursors.py", line 457, in _query
+    await conn.query(q)
+  File "/usr/local/lib/python3.11/site-packages/aiomysql/connection.py", line 469, in query
+    await self._read_query_result(unbuffered=unbuffered)
+  File "/usr/local/lib/python3.11/site-packages/aiomysql/connection.py", line 683, in _read_query_result
+    await result.read()
+  File "/usr/local/lib/python3.11/site-packages/aiomysql/connection.py", line 1164, in read
+    first_packet = await self.connection._read_packet()
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/aiomysql/connection.py", line 652, in _read_packet
+    packet.raise_for_error()
+  File "/usr/local/lib/python3.11/site-packages/pymysql/protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "/usr/local/lib/python3.11/site-packages/pymysql/err.py", line 150, in raise_mysql_exception
+    raise errorclass(errno, errval)
+
+2025-05-15 15:43:00,137 - applogger - [APP: Startup] Startup began...
+2025-05-15 15:43:00,309 - applogger - [WAIT FOR DB] SELECT 1 Executed -> Database is up and running!
+2025-05-15 15:43:00,311 - applogger - [INIT DB] Creating database tables...(if needed)
+2025-05-15 15:43:00,328 - applogger - [APP: Startup] Startup finished!
+2025-05-15 15:43:28,234 - applogger - Context set!
+2025-05-15 15:43:28,236 - applogger - Found alias in cache: alias_id=12 owner_id=5 alias='rabotniki' target='employees' is_table=True is_aggregate=False
+2025-05-15 15:43:28,268 - applogger - Found alias in cache: alias_id=20 owner_id=5 alias='город' target='departments.location' is_table=False is_aggregate=False
+2025-05-15 15:43:28,269 - applogger - Found alias in cache: alias_id=13 owner_id=5 alias='zp' target='employees.salary' is_table=False is_aggregate=False
+2025-05-15 15:43:28,271 - applogger - Found alias in cache: alias_id=28 owner_id=5 alias='отличие зп от средней' target='(employees.salary - (SELECT AVG((employees.salary + 2)) AS `avg_sal` FROM employees))' is_table=False is_aggregate=False
+2025-05-15 15:43:28,272 - applogger - alias=Alias(alias_id=12, owner_id=5, alias='rabotniki', target='employees', is_table=True, is_aggregate=False)
+2025-05-15 15:43:28,401 - applogger - Exception: (pymysql.err.OperationalError) (1054, "Unknown column 'departments.location' in 'field list'")
+[SQL: SELECT departments.location AS `город`, employees.salary AS `zp`, (employees.salary - (SELECT AVG((employees.salary + 2)) AS `avg_sal` FROM employees)) AS `отличие зп от средней` FROM employees;]
+(Background on this error at: https://sqlalche.me/e/20/e3q8) of class OperationalError
+Traceback:  File "/app/app/routers/actions.py", line 90, in new_query
+    result = await dbsession.execute(text(query.sql()))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/ext/asyncio/session.py", line 463, in execute
+    result = await greenlet_spawn(
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 201, in greenlet_spawn
+    result = context.throw(*sys.exc_info())
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/session.py", line 2365, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/session.py", line 2260, in _execute_internal
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1416, in execute
+    return meth(
+           ^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/sql/elements.py", line 516, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1638, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1843, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1983, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 2352, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 942, in do_execute
+    cursor.execute(statement, parameters)
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/mysql/aiomysql.py", line 97, in execute
+    return self.await_(self._execute_async(operation, parameters))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+            ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/mysql/aiomysql.py", line 106, in _execute_async
+    result = await self._cursor.execute(operation, parameters)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/aiomysql/cursors.py", line 239, in execute
+    await self._query(query)
+  File "/usr/local/lib/python3.11/site-packages/aiomysql/cursors.py", line 457, in _query
+    await conn.query(q)
+  File "/usr/local/lib/python3.11/site-packages/aiomysql/connection.py", line 469, in query
+    await self._read_query_result(unbuffered=unbuffered)
+  File "/usr/local/lib/python3.11/site-packages/aiomysql/connection.py", line 683, in _read_query_result
+    await result.read()
+  File "/usr/local/lib/python3.11/site-packages/aiomysql/connection.py", line 1164, in read
+    first_packet = await self.connection._read_packet()
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/aiomysql/connection.py", line 652, in _read_packet
+    packet.raise_for_error()
+  File "/usr/local/lib/python3.11/site-packages/pymysql/protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "/usr/local/lib/python3.11/site-packages/pymysql/err.py", line 150, in raise_mysql_exception
+    raise errorclass(errno, errval)
+
+2025-05-15 15:44:05,576 - applogger - [APP: Startup] Startup began...
+2025-05-15 15:44:05,717 - applogger - [WAIT FOR DB] SELECT 1 Executed -> Database is up and running!
+2025-05-15 15:44:05,718 - applogger - [INIT DB] Creating database tables...(if needed)
+2025-05-15 15:44:05,799 - applogger - [APP: Startup] Startup finished!
+2025-05-15 15:44:11,663 - applogger - Context set!
+2025-05-15 15:44:11,664 - applogger - Found alias in cache: alias_id=12 owner_id=5 alias='rabotniki' target='employees' is_table=True is_aggregate=False
+2025-05-15 15:44:11,676 - applogger - Found alias in cache: alias_id=20 owner_id=5 alias='город' target='departments.location' is_table=False is_aggregate=False
+2025-05-15 15:44:11,678 - applogger - Found alias in cache: alias_id=13 owner_id=5 alias='zp' target='employees.salary' is_table=False is_aggregate=False
+2025-05-15 15:44:11,680 - applogger - Found alias in cache: alias_id=28 owner_id=5 alias='отличие зп от средней' target='(employees.salary - (SELECT AVG((employees.salary + 2)) AS `avg_sal` FROM employees))' is_table=False is_aggregate=False
+2025-05-15 15:44:11,682 - applogger - alias=Alias(alias_id=12, owner_id=5, alias='rabotniki', target='employees', is_table=True, is_aggregate=False)
+2025-05-15 15:44:11,690 - applogger - Exception: (pymysql.err.OperationalError) (1054, "Unknown column 'departments.location' in 'field list'")
+[SQL: SELECT departments.location AS `город`, employees.salary AS `zp`, (employees.salary - (SELECT AVG((employees.salary + 2)) AS `avg_sal` FROM employees)) AS `отличие зп от средней` FROM employees;]
+(Background on this error at: https://sqlalche.me/e/20/e3q8) of class OperationalError
+Traceback:  File "/app/app/routers/actions.py", line 90, in new_query
+    result = await dbsession.execute(text(query.sql()))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/ext/asyncio/session.py", line 463, in execute
+    result = await greenlet_spawn(
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 201, in greenlet_spawn
+    result = context.throw(*sys.exc_info())
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/session.py", line 2365, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/session.py", line 2260, in _execute_internal
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1416, in execute
+    return meth(
+           ^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/sql/elements.py", line 516, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1638, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1843, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1983, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 2352, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 942, in do_execute
+    cursor.execute(statement, parameters)
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/mysql/aiomysql.py", line 97, in execute
+    return self.await_(self._execute_async(operation, parameters))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+            ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/mysql/aiomysql.py", line 106, in _execute_async
+    result = await self._cursor.execute(operation, parameters)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/aiomysql/cursors.py", line 239, in execute
+    await self._query(query)
+  File "/usr/local/lib/python3.11/site-packages/aiomysql/cursors.py", line 457, in _query
+    await conn.query(q)
+  File "/usr/local/lib/python3.11/site-packages/aiomysql/connection.py", line 469, in query
+    await self._read_query_result(unbuffered=unbuffered)
+  File "/usr/local/lib/python3.11/site-packages/aiomysql/connection.py", line 683, in _read_query_result
+    await result.read()
+  File "/usr/local/lib/python3.11/site-packages/aiomysql/connection.py", line 1164, in read
+    first_packet = await self.connection._read_packet()
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/aiomysql/connection.py", line 652, in _read_packet
+    packet.raise_for_error()
+  File "/usr/local/lib/python3.11/site-packages/pymysql/protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "/usr/local/lib/python3.11/site-packages/pymysql/err.py", line 150, in raise_mysql_exception
+    raise errorclass(errno, errval)
+
+2025-05-20 12:05:43,756 - applogger - [APP: Startup] Startup began...
+2025-05-20 12:05:44,310 - applogger - [WAIT FOR DB] SELECT 1 Executed -> Database is up and running!
+2025-05-20 12:05:44,311 - applogger - [INIT DB] Creating database tables...(if needed)
+2025-05-20 12:05:44,415 - applogger - [APP: Startup] Startup finished!

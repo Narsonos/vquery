@@ -4,9 +4,10 @@ from fastapi.responses import JSONResponse
 
 
 #Project files
-from app.utils.common import convert_input_query
+from app.utils.common import convert_input_query, parse_db_error
 from app.config import Config
-from app.db import RedisDependency, DBDependency, get_users, get_all_table_names, get_sql_schema
+from app.utils import context as ctx
+from app.db import RedisDependency, DBDependency, get_all_table_names, get_sql_schema
 import app.utils.security as security
 import app.utils.exceptions as exc
 import app.models.common as models
@@ -14,12 +15,12 @@ import app.models.sql as sqllib
 
 
 #SQLAlchemy/SQLModel
-from sqlmodel import select, insert, delete
+from sqlmodel import select, delete
 import sqlalchemy.exc as sqlexc
 from sqlalchemy import text
 
 #Pydantic/Typing
-from typing import Annotated, List, get_args
+from typing import List, get_args
 
 import traceback
 
@@ -63,10 +64,18 @@ async def get_queries(user: security.CurrentUserDependency, dbsession:DBDependen
     return await dbsession.scalars(q)
 
 @router.get('/del_query')
-async def del_query(user: security.CurrentUserDependency, dbsession: DBDependency, query_id: int):
-    await dbsession.execute(delete(models.Query).where(models.Query.owner_id == user.id, models.Query.query_id==query_id))
-    await dbsession.commit()
-    return JSONResponse(content={"msg":f"Query was deleted successfully (if existed)"})
+async def del_query(user: security.CurrentUserDependency, dbsession: DBDependency, redis:RedisDependency,query_id: int):
+    query = await dbsession.scalar(select(models.Query).where(models.Query.owner_id == user.id, models.Query.query_id==query_id))
+
+    if query:
+        key = f"query:{query.query_id}:{query.owner_id}:{query.name}"
+        await redis.delete(key)
+        await redis.delete(f"query:id:{query.query_id}")
+        await redis.delete(f"query:name:{query.owner_id}:{query.name}")
+        await dbsession.delete(query)
+        await dbsession.commit()
+        return JSONResponse(content={"msg":f"Query was deleted successfully (if existed)"})
+    return HTTPException(status_code=404, detail={'msg':'Requested object does not exist!'})
 
 
 @router.post('/new_query')
@@ -78,16 +87,23 @@ async def new_query(
     ):
     
     try:
-        await dbsession.execute(text(query.sql()))
+        result = await dbsession.execute(text(query.sql()))
     except exc.SQLException as e:
         logger.debug(f'Exception: {e} of class {e.__class__.__name__}\nTraceback:{"".join(traceback.format_tb(e.__traceback__))}')
         raise e.get_http_exception()
-    except Exception as e:
+    except sqlexc.OperationalError as e:
+        user_message, error_text = parse_db_error(e)
         logger.debug(f'Exception: {e} of class {e.__class__.__name__}\nTraceback:{"".join(traceback.format_tb(e.__traceback__))}')
-        raise exc.InvalidQuery from e
+        raise exc._InvalidQuery(user_message, error_text) from e
 
     try:
-        q = models.Query(owner_id=user.id, name=name, query_sql=query.sql())
+        q = models.Query(
+            owner_id=user.id,
+            name=name,
+            query_sql=query.sql(),
+            col_count=len(result.keys()),
+            col_names=result.keys()
+        )
         dbsession.add(q)
         await dbsession.commit()
         await dbsession.refresh(q)
@@ -136,20 +152,32 @@ async def get_tables(user: security.CurrentUserDependency, dbsession:DBDependenc
 
 
 @router.get('/get_aliases')
-async def get_aliases(user: security.CurrentUserDependency, dbsession: DBDependency, alias_id: int|None = None) -> List[models.Alias]:
+async def get_aliases(user: security.CurrentUserDependency, dbsession: DBDependency, alias_id: int|None = None, name: str|None=None) -> List[models.Alias]:
     q = select(models.Alias).where(models.Alias.owner_id == user.id) 
     q = q.where(models.Alias.alias_id == alias_id) if alias_id is not None else q
+    q = q.where(models.Alias.alias == name) if name is not None else q
     return await dbsession.scalars(q)
 
 @router.get('/del_alias')
-async def del_alias(user: security.CurrentUserDependency, dbsession: DBDependency, alias_id: int):
-    await dbsession.execute(delete(models.Alias).where(models.Alias.owner_id == user.id, models.Alias.alias_id==alias_id))
-    await dbsession.commit()
-    return JSONResponse(content={"msg":f"Alias was deleted successfully (if existed)"})
+async def del_alias(user: security.CurrentUserDependency, dbsession: DBDependency, redis:RedisDependency, alias_id: int):
+
+    alias = await dbsession.scalar(select(models.Alias).where(models.Alias.owner_id == user.id, models.Alias.alias_id==alias_id))
+
+    if alias:
+        key = f"alias:{alias.alias_id}:{alias.owner_id}:{alias.alias}"
+        await redis.delete(key)
+        await redis.delete(f"alias:id:{alias.alias_id}")
+        await redis.delete(f"alias:name:{alias.owner_id}:{alias.alias}")
+        await dbsession.delete(alias)
+        await dbsession.commit()
+        return JSONResponse(content={"msg":f"Alias was deleted successfully (if existed)"})
+    return HTTPException(status_code=404, detail={'msg':'Requested object does not exist!'})
 
 @router.post('/new_alias')
-async def new_alias(user: security.CurrentUserDependency, dbsession:DBDependency, new_alias: sqllib.AliasCreate):
+async def new_alias(user: security.CurrentUserDependency, dbsession:DBDependency, redis:RedisDependency, new_alias: sqllib.AliasCreate):
     
+
+    await ctx.set_request_context(user=user, dbsession=dbsession, redis=redis, model_context={})
     is_aggreagte = (await new_alias.target._counterpart.from_input(inp=new_alias.target)).is_aggregate
 
     allowed_tables: List[str] = await get_all_table_names(dbsession, exclude_system=True)
@@ -260,13 +288,21 @@ async def language(user: security.CurrentUserDependency):
             'aliased': {
                 'desc': 'Represents an Aliased expression - the core component of this model. A sub-type of Expression',
                 'args': {
-                    'alias_id': 'A name of an existing alias.'
+                    'alias_id': 'An id of an existing alias. Optional, if alias_name is used!',
+                    'alias_name': 'A name of an existing alias. Optional, if alias_id is used!',
                 }  
             },
             'literal': {
                 'desc': 'A literal expression that is basically an arbitrary int/str/float/bool value. A sub-type of Expression.',
                 'args': {
                     'value': 'A value of a literal expression.'
+                } 
+            },
+            'case': {
+                'desc': 'A case/when/else cluase',
+                'args': {
+                    'cases': 'A list of CaseItem objects representing when/then clauses, each has fields case:BooleanExpr, then:Expr',
+                    'default': 'An "else" part of the clause. A sub-type of Expression'
                 } 
             }
         },
@@ -291,6 +327,12 @@ async def language(user: security.CurrentUserDependency):
                     'left': 'Left operand of (!) Expression subtype',
                     'operation': 'A comparison operator',
                     'right': 'Right operand of (!) Expression subtype'
+                }
+            },
+            'isnull': {
+                'desc': 'An IS NULL operator. A sub-type of BooleanExpr',
+                'args': {
+                    'operand': 'A sub-type of Expr',
                 }
             },
 

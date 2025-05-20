@@ -96,15 +96,23 @@ AliasAlreadyExists = HTTPException(
     detail={"msg":'Alias already exists'}   
 )
 
+IncorrectAliasFetchRequest = HTTPException(
+    status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+    detail={"msg":'While recreating an alias or query => tried to fetch alias but not provided neither alias name nor id'}   
+)
+
+IncorrectQueryFetchRequest = HTTPException(
+    status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+    detail={"msg":'System tried to fetch query but not provided neither query name nor id'}   
+)
+
+
 TableNotExists = HTTPException(
     status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
     detail={"msg":'Table not exists'}   
 )
 
-InvalidQuery = HTTPException(
-    status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
-    detail={"msg":'Query failed, action cancelled'}   
-)
+
 
 QueryAlreadyExists = HTTPException(
     status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
@@ -122,3 +130,12 @@ TableInsteadOfColumn = HTTPException(
 )
 
 
+
+#Below there will be factories of such exceptions
+
+_ImproperAggregateUse = lambda msg: HTTPException(status_code=status.HTTP_422_UNPROCESSABLE_ENTITY, detail={"msg":f'Improper agregate function usage{": " + msg if msg else "!"}'})
+_AliasNotExists = lambda msg: HTTPException(status_code=status.HTTP_422_UNPROCESSABLE_ENTITY, detail={"msg":f'Alias does not exist{": " + msg if msg else "!"}'})
+_QueryNotExists = lambda msg: HTTPException(status_code=status.HTTP_422_UNPROCESSABLE_ENTITY, detail={"msg":f'Query does not exist{": " + msg if msg else "!"}'})
+_ImpossiblToScalarize = lambda msg: HTTPException(status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,detail={"msg":f'Subquery is not scalar and cannot be turned into such:{": " + msg if msg else "!"}'})
+_InvalidQuery = lambda user_error, error: HTTPException(status_code=status.HTTP_422_UNPROCESSABLE_ENTITY, detail={"msg":'Query failed, action cancelled','user_error':f'{user_error}', 'error':f'{error}'}   
+)
