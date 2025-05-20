@@ -3614,3 +3614,49 @@ Traceback:  File "/app/app/routers/actions.py", line 90, in new_query
 2025-05-20 12:05:44,310 - applogger - [WAIT FOR DB] SELECT 1 Executed -> Database is up and running!
 2025-05-20 12:05:44,311 - applogger - [INIT DB] Creating database tables...(if needed)
 2025-05-20 12:05:44,415 - applogger - [APP: Startup] Startup finished!
+2025-05-20 12:24:46,679 - applogger - [APP: Startup] Startup began...
+2025-05-20 12:24:46,691 - applogger - [WAIT FOR DB] SELECT 1 Executed -> Database is up and running!
+2025-05-20 12:24:46,692 - applogger - [INIT DB] Creating database tables...(if needed)
+2025-05-20 12:24:46,705 - applogger - [APP: Startup] Startup finished!
+2025-05-20 12:26:59,503 - applogger - Context set!
+2025-05-20 12:26:59,530 - applogger - database returned that query_sql='SELECT `employees`.`name` AS `имя работника`, employees.salary AS `zp`, (employees.salary - (SELECT AVG((employees.salary + 2)) AS `avg_sal` FROM employees)) AS `отличие зп от средней` FROM employees;' query_id=27 col_count=3 owner_id=5 name='subquery_as_expression' col_names=['имя работника', 'zp', 'отличие зп от средней'] as an query for name=query_sql='SELECT `employees`.`name` AS `имя работника`, employees.salary AS `zp`, (employees.salary - (SELECT AVG((employees.salary + 2)) AS `avg_sal` FROM employees)) AS `отличие зп от средней` FROM employees;' query_id=27 col_count=3 owner_id=5 name='subquery_as_expression' col_names=['имя работника', 'zp', 'отличие зп от средней'] ownerid=5
+2025-05-20 12:26:59,548 - applogger - Pulled query from DB and cached: query_sql='SELECT `employees`.`name` AS `имя работника`, employees.salary AS `zp`, (employees.salary - (SELECT AVG((employees.salary + 2)) AS `avg_sal` FROM employees)) AS `отличие зп от средней` FROM employees;' query_id=27 col_count=3 owner_id=5 name='subquery_as_expression' col_names=['имя работника', 'zp', 'отличие зп от средней']
+2025-05-20 12:26:59,549 - applogger - query=Query(query_sql='SELECT `employees`.`name` AS `имя работника`, employees.salary AS `zp`, (employees.salary - (SELECT AVG((employees.salary + 2)) AS `avg_sal` FROM employees)) AS `отличие зп от средней` FROM employees;', query_id=27, col_count=3, owner_id=5, name='subquery_as_expression', col_names=['имя работника', 'zp', 'отличие зп от средней'])
+2025-05-20 13:21:49,724 - applogger - [APP: Startup] Startup began...
+2025-05-20 13:21:49,737 - applogger - [WAIT FOR DB] SELECT 1 Executed -> Database is up and running!
+2025-05-20 13:21:49,738 - applogger - [INIT DB] Creating database tables...(if needed)
+2025-05-20 13:21:49,764 - applogger - [APP: Startup] Startup finished!
+2025-05-20 13:35:02,667 - applogger - Context set!
+2025-05-20 13:35:02,687 - applogger - database returned that alias='rabotniki' owner_id=5 is_table=True target='employees' alias_id=12 is_aggregate=False as an alias for name=alias='rabotniki' owner_id=5 is_table=True target='employees' alias_id=12 is_aggregate=False ownerid=5
+2025-05-20 13:35:02,694 - applogger - Pulled alias from DB and cached: alias='rabotniki' owner_id=5 is_table=True target='employees' alias_id=12 is_aggregate=False
+2025-05-20 13:35:02,697 - applogger - database returned that alias='имя работника' owner_id=5 is_table=False target='`employees`.`name`' alias_id=22 is_aggregate=False as an alias for name=alias='имя работника' owner_id=5 is_table=False target='`employees`.`name`' alias_id=22 is_aggregate=False ownerid=5
+2025-05-20 13:35:02,698 - applogger - Pulled alias from DB and cached: alias='имя работника' owner_id=5 is_table=False target='`employees`.`name`' alias_id=22 is_aggregate=False
+2025-05-20 13:35:02,748 - applogger - Found alias in cache: alias_id=22 owner_id=5 alias='имя работника' target='`employees`.`name`' is_table=False is_aggregate=False
+2025-05-20 13:35:02,795 - applogger - alias=Alias(alias='rabotniki', owner_id=5, is_table=True, target='employees', alias_id=12, is_aggregate=False)
+2025-05-20 13:51:53,999 - applogger - Context set!
+2025-05-20 13:51:54,001 - applogger - Found alias in cache: alias_id=12 owner_id=5 alias='rabotniki' target='employees' is_table=True is_aggregate=False
+2025-05-20 13:51:54,004 - applogger - database returned that alias='employee_count' owner_id=5 is_table=False target='COUNT(*)' alias_id=15 is_aggregate=True as an alias for name=alias='employee_count' owner_id=5 is_table=False target='COUNT(*)' alias_id=15 is_aggregate=True ownerid=5
+2025-05-20 13:51:54,013 - applogger - Pulled alias from DB and cached: alias='employee_count' owner_id=5 is_table=False target='COUNT(*)' alias_id=15 is_aggregate=True
+2025-05-20 13:51:54,014 - applogger - Found alias in cache: alias_id=22 owner_id=5 alias='имя работника' target='`employees`.`name`' is_table=False is_aggregate=False
+2025-05-20 13:51:54,015 - applogger - database returned that None as an query for name=None ownerid=5
+2025-05-20 13:52:19,397 - applogger - Context set!
+2025-05-20 13:52:19,398 - applogger - Found alias in cache: alias_id=12 owner_id=5 alias='rabotniki' target='employees' is_table=True is_aggregate=False
+2025-05-20 13:52:19,399 - applogger - Found alias in cache: alias_id=15 owner_id=5 alias='employee_count' target='COUNT(*)' is_table=False is_aggregate=True
+2025-05-20 13:52:19,400 - applogger - Found alias in cache: alias_id=22 owner_id=5 alias='имя работника' target='`employees`.`name`' is_table=False is_aggregate=False
+2025-05-20 13:52:19,403 - applogger - database returned that query_sql="SELECT `employees`.`name` AS `имя работника` FROM employees  WHERE (`employees`.`name` REGEXP '^[Aa].*$');" query_id=29 col_count=1 name='names_startwith_a' owner_id=5 col_names=['имя работника'] as an query for name=query_sql="SELECT `employees`.`name` AS `имя работника` FROM employees  WHERE (`employees`.`name` REGEXP '^[Aa].*$');" query_id=29 col_count=1 name='names_startwith_a' owner_id=5 col_names=['имя работника'] ownerid=5
+2025-05-20 13:52:19,421 - applogger - Pulled query from DB and cached: query_sql="SELECT `employees`.`name` AS `имя работника` FROM employees  WHERE (`employees`.`name` REGEXP '^[Aa].*$');" query_id=29 col_count=1 name='names_startwith_a' owner_id=5 col_names=['имя работника']
+2025-05-20 13:52:19,422 - applogger - alias=Alias(alias_id=12, owner_id=5, alias='rabotniki', target='employees', is_table=True, is_aggregate=False)
+2025-05-20 13:54:20,678 - applogger - [APP: Startup] Startup began...
+2025-05-20 13:54:20,685 - applogger - [WAIT FOR DB] SELECT 1 Executed -> Database is up and running!
+2025-05-20 13:54:20,686 - applogger - [INIT DB] Creating database tables...(if needed)
+2025-05-20 13:54:20,702 - applogger - [APP: Startup] Startup finished!
+2025-05-20 13:55:47,907 - applogger - Context set!
+2025-05-20 13:55:47,908 - applogger - Found alias in cache: alias_id=12 owner_id=5 alias='rabotniki' target='employees' is_table=True is_aggregate=False
+2025-05-20 13:55:47,916 - applogger - Found alias in cache: alias_id=15 owner_id=5 alias='employee_count' target='COUNT(*)' is_table=False is_aggregate=True
+2025-05-20 13:55:47,917 - applogger - Found alias in cache: alias_id=22 owner_id=5 alias='имя работника' target='`employees`.`name`' is_table=False is_aggregate=False
+2025-05-20 13:55:47,918 - applogger - Found query in cache: query_id=29 owner_id=5 name='names_startwith_a' query_sql="SELECT `employees`.`name` AS `имя работника` FROM employees  WHERE (`employees`.`name` REGEXP '^[Aa].*$');" col_names=['имя работника'] col_count=1
+2025-05-20 13:55:47,918 - applogger - alias=Alias(alias_id=12, owner_id=5, alias='rabotniki', target='employees', is_table=True, is_aggregate=False)
+2025-05-20 14:09:57,044 - applogger - [APP: Startup] Startup began...
+2025-05-20 14:09:57,051 - applogger - [WAIT FOR DB] SELECT 1 Executed -> Database is up and running!
+2025-05-20 14:09:57,052 - applogger - [INIT DB] Creating database tables...(if needed)
+2025-05-20 14:09:57,067 - applogger - [APP: Startup] Startup finished!

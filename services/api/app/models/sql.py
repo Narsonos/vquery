@@ -194,11 +194,12 @@ class CaseExpr(Expr):
     type: Literal['case']
     cases: List[CaseItem] = Field(min_length=1)
     default: 'Expression'
-    
+
+
 
 
 #these two represent atomic database objects
-#They do not need counterparts - because they are always stored as parts of an aliases.
+#They do not need counterparts - because they are always stored as parts of aliases.
 class TableOperand(Expr):
     _counterpart = PrivateAttr(default_factory= lambda: TableOperand) 
     type: Literal["table"]
@@ -290,8 +291,16 @@ class IsNull(BooleanExpr):
     operand: "Expression"
     
 
+class InExpr(BooleanExpr):
+    _counterpart = PrivateAttr(default_factory=lambda: _InExpr)
+    type: Literal['in']
+    left: "Expression"
+    right: 'SelectSubquery'
 
-
+class ExistsExpr(BooleanExpr):
+    _counterpart = PrivateAttr(default_factory=lambda: _ExistsExpr)
+    type: Literal['exists']
+    subquery: 'SelectSubquery'
 
 
 
@@ -684,6 +693,47 @@ class _IsNull(_BooleanExpr):
         return _IsNull.model_construct(operand = await inp.operand._counterpart.from_input(inp.operand))
 
 
+class _InExpr(_BooleanExpr):
+    left: _Expr
+    right: '_SelectSubquery'
+
+    @field_validator('right', mode='after')
+    @classmethod
+    def ensure_the_subquery_has_a_single_column(cls, sub:'_SelectSubquery'):
+        if sub.query.col_count != 1:
+            raise ValueError('The subquery has col_count not equal to 1, which is vital for SQL IN Expression.')
+
+    def sql(self):
+        return f'({self.left.sql()} IN {self.right.sql()})'
+
+    @property
+    def is_aggregate(self) -> bool:
+        return self.left.is_aggregate or self.right.is_aggregate
+    
+    @classmethod
+    async def from_input(cls, inp:InExpr):
+        return _InExpr.model_construct(
+            left = await inp.left._counterpart.from_input(inp.left),
+            right = await inp.right._counterpart.from_input(inp.right)
+            )            
+
+class _ExistsExpr(_BooleanExpr):
+    subquery: '_SelectSubquery'
+
+    def sql(self):
+        return f'EXISTS {self.subquery.sql()}'
+
+    @property
+    def is_aggregate(self) -> bool:
+        return False
+    
+    @classmethod
+    async def from_input(cls, inp:ExistsExpr):
+        return _ExistsExpr.model_construct(
+            subquery = await inp.subquery._counterpart.from_input(inp.subquery),
+        )
+
+
 
 class _CaseItem(_Expr):
     case: _BooleanExpr
@@ -985,7 +1035,8 @@ BooleanExpression = Annotated[Union[
     ComparisonExpr,
     AliasedExpr,
     BetweenExpr,
-    IsNull
+    IsNull,
+    InExpr
     ], Field(discriminator='type')]
 
 

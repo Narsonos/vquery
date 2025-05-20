@@ -204,12 +204,12 @@ Alias
   "select": {
     "columns": [
       {
-        "type": "column",
+        "type": "col",
         "table": "subquery_as_expression",
         "column": "имя работника"
       },
       {
-        "type": "column",
+        "type": "col",
         "table": "subquery_as_expression",
         "column": "zp"
       }
@@ -218,5 +218,51 @@ Alias
       "type": "subquery",
       "query_name": "subquery_as_expression",
     }
+  }
+}
+
+
+6.4. Sub in IN Expression
+Test: Sub selects employees whose name begins with "A" - main query selects count
+
+sub
+{
+  "select": {
+    "columns": [
+      {"type": "aliased", "alias_name":"имя работника"}
+    ],
+    "from_": {
+      "type": "aliased",
+      "alias_name": "rabotniki"
+    }
+  },
+  "where": {
+    "expression": {
+      "type": "compare",
+      "left": {"type":"aliased","alias_name":"имя работника"},
+      "operator":"REGEXP",
+      "right": {"type":"literal","value":"^[Aa].*$"}
+    } 
+  }
+}
+
+main
+{
+  "select": {
+    "columns": [
+      {"type": "aliased", "alias_name":"имя работника"}
+    ],
+    "from_": {
+      "type": "aliased",
+      "alias_name": "rabotniki"
+    }
+  },
+  "where": {
+    "expression": {
+      "type": "compare",
+      "left": {"type":"aliased","alias_name":"имя работника"},
+      "operator":"REGEXP",
+      "right": {"type":"literal","value":"^[Aa].*$"}
+    } 
   }
 }
