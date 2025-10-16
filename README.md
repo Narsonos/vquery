@@ -1,2 +1,5 @@
 # vquery
-API for querying database from a VERY user-friendly interface
+A FastAPI application that allows querying an SQL database with JSON-SQL queries.
+Inputs are validated via an AST tree.
+
+
