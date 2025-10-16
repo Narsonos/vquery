@@ -17,7 +17,7 @@ class Config():
 
     #Security settings
     DEFAULT_ADMIN_USERNAME = 'admin'
-    DEFAULT_ADMIN_PASSWORD = '123123123'
+    DEFAULT_ADMIN_PASSWORD = os.getenv("DEFAULT_ADMIN_PASSWORD")
     JWT_SECRET = os.getenv("JWT_SECRET")
     REFRESH_SECRET = os.getenv("REFRESH_SECRET")
     ALGORITHM = "HS256"
